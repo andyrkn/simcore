@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{54a67ea7-3fee-4254-acf8-9dec4bb64dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\ObjectLogic">
+      <UniqueIdentifier>{ed68953e-8f93-4ba2-a1d4-da165c81f0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Utils">
+      <UniqueIdentifier>{e92452bb-1471-4f01-848f-5a12438ba6c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Core">
+      <UniqueIdentifier>{06801164-daf3-4646-9551-ca62df52c42b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Camera">
+      <UniqueIdentifier>{55750d87-3fb3-48d5-b932-3daee6e94638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{658bca88-3de8-43f2-a149-8b85ede19092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\Core">
+      <UniqueIdentifier>{247ff2f3-887c-484a-a995-2726f66a45be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\Camera">
+      <UniqueIdentifier>{f88175f9-4148-4d12-a214-c79edc3e8720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\rest">
+      <UniqueIdentifier>{e9ff3a80-92fc-46a1-b6b4-32224724c33c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\ObjectLogic">
+      <UniqueIdentifier>{52e8ef6f-c260-4538-ba90-62ad7103d1e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SimulatorObjects">
+      <UniqueIdentifier>{247c24c1-8018-4680-93cb-59fcaffe1d27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SimulatorObjects">
+      <UniqueIdentifier>{db473b06-4d8d-47c7-9954-4683f1c6a48e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{ae353b93-146c-44ad-bc37-aaac91f682b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene">
+      <UniqueIdentifier>{70e9f677-3e85-42f4-a1ee-72c61258a37f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\openGlContainer.h">
+      <Filter>Header Files\System\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SimulatorCore.h">
+      <Filter>Header Files\System\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGlProxy.h">
+      <Filter>Header Files\System\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logger.h">
+      <Filter>Header Files\System\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Camera.h">
+      <Filter>Header Files\System\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\oglObject.h">
+      <Filter>Header Files\System\ObjectLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\oglVertexObject.h">
+      <Filter>Header Files\System\ObjectLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Floor.h">
+      <Filter>Header Files\SimulatorObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cube.h">
+      <Filter>Header Files\SimulatorObjects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Logger.cpp">
+      <Filter>Source Files\System\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimulatorCore.cpp">
+      <Filter>Source Files\System\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\oglObject.cpp">
+      <Filter>Source Files\System\ObjectLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\openGlContainer.cpp">
+      <Filter>Source Files\System\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="sim2.cpp">
+      <Filter>Source Files\System\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>Source Files\System\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\oglVertexObject.cpp">
+      <Filter>Source Files\System\ObjectLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Floor.cpp">
+      <Filter>Source Files\SimulatorObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cube.cpp">
+      <Filter>Source Files\SimulatorObjects</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
