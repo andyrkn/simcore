@@ -4,6 +4,7 @@
 Floor::Floor(const char* path)
 {
 	init(path);
+	ModelMatrix = glm::mat4(1.0f);
 }
 
 Floor::~Floor()

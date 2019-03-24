@@ -47,6 +47,8 @@ void openGlContainer::init()
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
+	glfwSwapInterval(1);
+
 	glfwPollEvents();
 	glfwSetCursorPos(window, width / 2, height / 2);
 

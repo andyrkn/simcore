@@ -5,8 +5,6 @@
 #include <string>
 #include "Logger.h"
 
-void oglVertexObject::update()
-{}
 
 void oglVertexObject::render()
 {
@@ -77,8 +75,7 @@ void oglVertexObject::init(const char * path)
 {
 	lastTime = glfwGetTime();
 	deltaTime = 0;
-	ModelMatrix = glm::mat4(1.0f);
-	frames = 0;
+	gravInvul = true;
 
 	load(path);
 
@@ -93,16 +90,19 @@ void oglVertexObject::init(const char * path)
 
 void oglVertexObject::updatePos()
 {
-	x = ModelMatrix[3][0];
-	y = ModelMatrix[3][1];
-	z = ModelMatrix[3][2];
+	// x = ModelMatrix[3][0];
+	// y = ModelMatrix[3][1];
+	// z = ModelMatrix[3][2];
 }
 
-void oglVertexObject::logModelMatrix()
+void oglVertexObject::logMatrix(glm::mat4 matrix)
 {
+
 	for (int i = 0; i < 4; i++)
-		std::cout << ModelMatrix[i][0] << ' '\
-		<< ModelMatrix[i][1] << ' '\
-		<< ModelMatrix[i][2] << ' '\
-		<< ModelMatrix[i][3] << ' ' << "\n";
+		std::cout << matrix[i][0] << ' '\
+		<< matrix[i][1] << ' '\
+		<< matrix[i][2] << ' '\
+		<< matrix[i][3] << ' ' << "\n";
+
+	std::cout << "\n-------------------------------------\n";
 }

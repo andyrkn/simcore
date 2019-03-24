@@ -159,6 +159,7 @@
     <ClInclude Include="src\Cube.h" />
     <ClInclude Include="src\Floor.h" />
     <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\ObjectState.h" />
     <ClInclude Include="src\oglObject.h" />
     <ClInclude Include="src\oglVertexObject.h" />
     <ClInclude Include="src\openGlContainer.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="src\Cube.cpp" />
     <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\ObjectState.cpp" />
     <ClCompile Include="src\oglObject.cpp" />
     <ClCompile Include="src\oglVertexObject.cpp" />
     <ClCompile Include="src\openGlContainer.cpp" />

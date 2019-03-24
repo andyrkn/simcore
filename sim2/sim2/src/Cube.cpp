@@ -4,11 +4,13 @@
 Cube::Cube(const char* path)
 {
 	init(path);
+	gravInvul = false;
+	state.init(glm::vec3(0.0f, 3.0f, 0.0f), this->width*this->height*this->depth, 0.2f);
 
-	TranslationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 3.0f, 0.0f));
+	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
 	ScaleMatrix = glm::mat4(1.0f);
-	RotationMatrix = glm::mat4(1.0f);
-	ModelMatrix = TranslationMatrix * RotationMatrix * ScaleMatrix;
+	RotationQuat = glm::quat(1, 0, 0, 0);
+	ModelMatrix = TranslationMatrix * glm::mat4_cast(RotationQuat) * ScaleMatrix;
 }
 
 Cube::~Cube()
@@ -16,26 +18,30 @@ Cube::~Cube()
 
 void Cube::update()
 {
+	// static float error = 0;
 	double currentTime = glfwGetTime();
 	deltaTime += float(currentTime - lastTime);
-	float fps = 1 / float(currentTime - lastTime);
-	static int spin = 1, type = 1;
-
-	if (deltaTime > 0.016)
+	// Logger::log(std::to_string(deltaTime));
+	// error += abs(0.0166666 - deltaTime);
+	// Logger::log(std::to_string(error));
+	//---------------------------------------------------
+	//RotationQuat = glm::rotate(RotationQuat, glm::radians(1.0f), glm::vec3(1, 0, 0));
+	//logMatrix(glm::mat4_cast(RotationQuat));
+	state.evaluate(glm::vec3(1, 0, 0), 0.0166666f);
+	static int frames = 0;
+	if (frames++ < 120)
 	{
-		if (spin > 180) { spin = 0; type = type * -1; }
-
-		TranslationMatrix = glm::translate(TranslationMatrix, glm::vec3(0.0f, 0.01f * type, 0.0f));
-
-		ModelMatrix = TranslationMatrix * RotationMatrix * ScaleMatrix;
-
-		updatePos();
-		std::cout << x << ' ' << y << ' ' << z << "\n";
-		std::cout << fps << "\n";
-
-		spin++;
-		deltaTime = 0;
+		TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
+		logMatrix(TranslationMatrix);
 	}
+	ModelMatrix = TranslationMatrix * glm::mat4_cast(RotationQuat) * ScaleMatrix;
+	updatePos();
 
+	//std::cout << x << ' ' << y << ' ' << z << "\n";
+	//std::cout << fps << "\n";
+
+
+	//---------------------------------------------------
+	deltaTime = 0;
 	lastTime = currentTime;
 }

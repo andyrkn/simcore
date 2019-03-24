@@ -10,14 +10,16 @@ Scene::~Scene()
 
 void Scene::renderObjects(openGlContainer &container, Camera &camera)
 {
+	/*
 	for (auto &obj : objects)
 	{
 		glm::mat4 MVP = camera.ProjectionMatrix * camera.ViewMatrix * obj.ModelMatrix;
 		glUniformMatrix4fv(container.MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
 		obj.render();
-		// obj.update();
+		obj.update();
 	}
+	*/
 
 	for (auto &obj : vertexObjects)
 	{
@@ -26,6 +28,8 @@ void Scene::renderObjects(openGlContainer &container, Camera &camera)
 
 		obj->render();
 		obj->update();
+		//gravity
+		if(!obj->gravInvul) obj->state.evaluate(glm::vec3(0, -obj->state.mass*9.8, 0), 0.0166666);
 	}
 }
 
