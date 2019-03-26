@@ -27,9 +27,6 @@
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{658bca88-3de8-43f2-a149-8b85ede19092}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\System\Core">
-      <UniqueIdentifier>{247ff2f3-887c-484a-a995-2726f66a45be}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\System\Camera">
       <UniqueIdentifier>{f88175f9-4148-4d12-a214-c79edc3e8720}</UniqueIdentifier>
     </Filter>
@@ -51,13 +48,16 @@
     <Filter Include="Header Files\Scene">
       <UniqueIdentifier>{70e9f677-3e85-42f4-a1ee-72c61258a37f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scene\Core">
+      <UniqueIdentifier>{247ff2f3-887c-484a-a995-2726f66a45be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\openGlContainer.h">
-      <Filter>Header Files\System\Core</Filter>
+      <Filter>Header Files\Scene\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\SimulatorCore.h">
-      <Filter>Header Files\System\Core</Filter>
+      <Filter>Header Files\Scene\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGlProxy.h">
       <Filter>Header Files\System\rest</Filter>

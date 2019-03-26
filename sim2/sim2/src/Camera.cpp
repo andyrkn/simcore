@@ -8,8 +8,8 @@ Camera::Camera(openGlContainer *container)
 
 	position = glm::vec3(0, 1, 5);
 
-	ProjectionMatrix = glm::perspective((float)glm::radians(45.0), 4.0f / 3.0f, 0.1f, 100.0f);
-	ViewMatrix = glm::lookAt(position, position, glm::vec3(0, 1, 0));
+	ProjectionMatrix = glm::perspective((float)glm::radians(360.0), 4.0f / 3.0f, 0.1f, 100.0f);
+	ViewMatrix = glm::lookAt(position, position, glm::vec3(0, 0, 0));
 }
 
 

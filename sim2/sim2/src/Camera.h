@@ -9,7 +9,6 @@ public:
 
 	glm::mat4 ProjectionMatrix;
 	glm::mat4 ViewMatrix;
-	glm::mat4 MVP;
 
 	float horizontalAngle = 3.14f;
 	float verticalAngle = 0.0f;

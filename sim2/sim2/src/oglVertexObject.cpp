@@ -66,9 +66,9 @@ void oglVertexObject::load(const char* path)
 			colors.push_back(glm::vec3(x, y, z));
 		}
 	}
-	width = -mix + max;
-	height = -miy + may;
-	depth = -miz + maz;
+	state.sizes[0] = -mix + max;
+	state.sizes[1] = -miy + may;
+	state.sizes[2] = -miz + maz;
 }
 
 void oglVertexObject::init(const char * path)

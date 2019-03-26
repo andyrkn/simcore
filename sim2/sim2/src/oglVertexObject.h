@@ -19,8 +19,6 @@ public:
 	glm::mat4 ModelMatrix;
 	bool gravInvul;
 	ObjectState state;
-	//space
-	float width, height, depth;
 
 	//gpu
 	GLuint vertexbuffer;

@@ -29,7 +29,24 @@ void Scene::renderObjects(openGlContainer &container, Camera &camera)
 		obj->render();
 		obj->update();
 		//gravity
-		if(!obj->gravInvul) obj->state.evaluate(glm::vec3(0, -obj->state.mass*9.8, 0), 0.0166666);
+		if (!obj->gravInvul) obj->state.evaluate(glm::vec3(0.0f, -obj->state.mass*9.8f, 0.0f), 0.0166666f);
+	}
+
+	for (auto &obj : vertexObjects)
+	{
+		if (!obj->gravInvul)
+		{
+			for (auto &obj2 : vertexObjects)
+			{
+				if (obj != obj2)
+				{
+					if (obj->state.collide(obj2->state))
+					{
+						obj->state.velocity.y = -obj->state.velocity.y * obj->state.elasticity;
+					}
+				}
+			}
+		}
 	}
 }
 

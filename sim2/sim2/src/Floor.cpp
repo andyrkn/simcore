@@ -5,6 +5,7 @@ Floor::Floor(const char* path)
 {
 	init(path);
 	ModelMatrix = glm::mat4(1.0f);
+	state.init(glm::vec3(0.0f, 0.0f, 0.0f));
 }
 
 Floor::~Floor()

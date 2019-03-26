@@ -5,7 +5,7 @@ Cube::Cube(const char* path)
 {
 	init(path);
 	gravInvul = false;
-	state.init(glm::vec3(0.0f, 3.0f, 0.0f), this->width*this->height*this->depth, 0.2f);
+	state.init(glm::vec3(0.0f, 3.0f, 0.0f), this->state.sizes[0]*this->state.sizes[1] *this->state.sizes[2], 0.7f);
 
 	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
 	ScaleMatrix = glm::mat4(1.0f);
@@ -27,13 +27,16 @@ void Cube::update()
 	//---------------------------------------------------
 	//RotationQuat = glm::rotate(RotationQuat, glm::radians(1.0f), glm::vec3(1, 0, 0));
 	//logMatrix(glm::mat4_cast(RotationQuat));
-	state.evaluate(glm::vec3(1, 0, 0), 0.0166666f);
+	
 	static int frames = 0;
 	if (frames++ < 120)
-	{
-		TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
-		logMatrix(TranslationMatrix);
+	{	
+		state.evaluate(glm::vec3(1, 10, 0), 0.0166666f);
+		//logMatrix(TranslationMatrix);
 	}
+	state.recalculate(0.0166666f);
+
+	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
 	ModelMatrix = TranslationMatrix * glm::mat4_cast(RotationQuat) * ScaleMatrix;
 	updatePos();
 

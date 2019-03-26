@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<glm/glm.hpp>
 class Logger
 {
 public:
@@ -8,5 +9,7 @@ public:
 	~Logger();
 	void static log(const char* str);
 	void static log(std::string str);
+	void static log(float d);
+	void static log(glm::vec3 v);
 };
 
