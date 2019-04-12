@@ -19,9 +19,10 @@ public:
 
 	openGlContainer *container;
 public:
-	Camera(openGlContainer *container);
+	Camera();
 	~Camera();
 
+	void setContainer(openGlContainer *container);
 	void update();
 	
 };

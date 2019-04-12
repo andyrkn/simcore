@@ -38,13 +38,8 @@ void ObjectState::recalculate(float dt)
 
 bool ObjectState::collide(ObjectState & state2)
 {
-	float d = 0;
-	for (int i = 0; i < 3; i++)
-		d += pow(position[i] - state2.position[i], 2);
-	d = sqrt(d);
-
-	Logger::log(position);
-	Logger::log(state2.position);
+	// Logger::log(position);
+	// Logger::log(state2.position);
 	// Logger::log(d);
 
 

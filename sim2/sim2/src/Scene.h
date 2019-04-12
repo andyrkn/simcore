@@ -13,8 +13,8 @@ class Scene
 private:
 	std::vector<Cube> cube;
 	std::vector<Floor> floor;
-private:
-	std::vector<oglObject> objects;
+
+	std::vector<oglObject> objects; 
 	std::vector<oglVertexObject*> vertexObjects;
 
 public:
@@ -22,6 +22,8 @@ public:
 	~Scene();
 
 	void renderObjects(openGlContainer &container, Camera &camera);
-	void loadObjects();
+	void updateObjects();
+	void loadObjects(bool headless);
+	bool breakCondition();
 };
 

@@ -8,6 +8,7 @@ public:
 	~Cube();
 
 public:
+	void selfInit();
 	void update();
 };
 

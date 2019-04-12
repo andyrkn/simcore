@@ -15,9 +15,9 @@ public:
 	float elasticity;
 public:
 	ObjectState();
+	void init(glm::vec3 pos);
 	~ObjectState();
 
-	void init(glm::vec3 pos);
 	void init(glm::vec3 pos, float mass, float elasticity = 0);
 	void evaluate(glm::vec3 force,float dt);
 	void recalculate(float dt);

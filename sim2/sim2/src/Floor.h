@@ -7,5 +7,6 @@ public:
 	~Floor();
 public:
 	void update();
+	void selfInit();
 };
 

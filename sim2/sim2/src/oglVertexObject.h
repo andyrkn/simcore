@@ -12,6 +12,7 @@ protected:
 	double lastTime;
 	float deltaTime;
 public:
+	std::string path;
 	//properties
 	glm::mat4 TranslationMatrix;
 	glm::quat RotationQuat;
@@ -27,12 +28,13 @@ public:
 	std::vector<glm::vec3> colors;
 
 public:
+	oglVertexObject(const char* path);
 	virtual void update() = 0;
 	void render();
-protected:
 	void load(const char* path);
 	void init(const char* path);
-	void updatePos();
+protected:
+	virtual void selfInit() = 0;
 	void logMatrix(glm::mat4 matrix);
 };
 

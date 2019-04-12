@@ -8,14 +8,14 @@ openGlContainer::openGlContainer(int _w, int _h)
 {
 	width = _w;
 	height = _h;
-	init();
 }
-
 
 openGlContainer::~openGlContainer()
 {
+	/*
 	glDeleteVertexArrays(1, &VertexArrayID);
-	glDeleteProgram(programID);
+	glDeleteProgram(ProgramID);
+	*/
 }
 
 void openGlContainer::init()
@@ -65,7 +65,7 @@ void openGlContainer::init()
 
 	loadShaders("TransformVertexShader.vertexshader", "ColorFragmentShader.fragmentshader");
 
-	MatrixID = glGetUniformLocation(programID, "MVP");
+	MatrixID = glGetUniformLocation(ProgramID, "MVP");
 }
 
 void openGlContainer::loadShaders(const char * vertex_path, const char * fragment_path)
@@ -165,5 +165,5 @@ void openGlContainer::loadShaders(const char * vertex_path, const char * fragmen
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);
 
-	this->programID = tempProgramID;
+	this->ProgramID = tempProgramID;
 }

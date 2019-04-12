@@ -1,11 +1,9 @@
 #include "Floor.h"
 #include "Logger.h"
 
-Floor::Floor(const char* path)
+Floor::Floor(const char* path) : oglVertexObject(path)
 {
-	init(path);
-	ModelMatrix = glm::mat4(1.0f);
-	state.init(glm::vec3(0.0f, 0.0f, 0.0f));
+
 }
 
 Floor::~Floor()
@@ -23,4 +21,10 @@ void Floor::update()
 		deltaTime = 0;
 	}
 	*/
+}
+
+void Floor::selfInit()
+{
+	ModelMatrix = glm::mat4(1.0f);
+	state.init(glm::vec3(0.0f, 0.0f, 0.0f));
 }

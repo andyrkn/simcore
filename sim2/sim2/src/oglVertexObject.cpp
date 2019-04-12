@@ -6,6 +6,11 @@
 #include "Logger.h"
 
 
+oglVertexObject::oglVertexObject(const char *path)
+{
+	this->path = path;
+}
+
 void oglVertexObject::render()
 {
 	glEnableVertexAttribArray(0);
@@ -69,15 +74,15 @@ void oglVertexObject::load(const char* path)
 	state.sizes[0] = -mix + max;
 	state.sizes[1] = -miy + may;
 	state.sizes[2] = -miz + maz;
+
+	deltaTime = 0;
+	gravInvul = true;
+	selfInit();
 }
 
 void oglVertexObject::init(const char * path)
 {
 	lastTime = glfwGetTime();
-	deltaTime = 0;
-	gravInvul = true;
-
-	load(path);
 
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -86,13 +91,6 @@ void oglVertexObject::init(const char * path)
 	glGenBuffers(1, &colorbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
 	glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(glm::vec3), &colors[0], GL_STATIC_DRAW);
-}
-
-void oglVertexObject::updatePos()
-{
-	// x = ModelMatrix[3][0];
-	// y = ModelMatrix[3][1];
-	// z = ModelMatrix[3][2];
 }
 
 void oglVertexObject::logMatrix(glm::mat4 matrix)

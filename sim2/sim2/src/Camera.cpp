@@ -2,10 +2,8 @@
 
 
 
-Camera::Camera(openGlContainer *container)
+Camera::Camera()
 {
-	this->container = container;
-
 	position = glm::vec3(0, 1, 5);
 
 	ProjectionMatrix = glm::perspective((float)glm::radians(360.0), 4.0f / 3.0f, 0.1f, 100.0f);
@@ -15,6 +13,11 @@ Camera::Camera(openGlContainer *container)
 
 Camera::~Camera()
 {}
+
+void Camera::setContainer(openGlContainer * container)
+{
+	this->container = container;
+}
 
 void Camera::update()
 {
