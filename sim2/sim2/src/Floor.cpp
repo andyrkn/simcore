@@ -3,7 +3,7 @@
 
 Floor::Floor(const char* path) : oglVertexObject(path)
 {
-
+	ModelMatrix = glm::mat4(1.0f);
 }
 
 Floor::~Floor()
@@ -21,10 +21,4 @@ void Floor::update()
 		deltaTime = 0;
 	}
 	*/
-}
-
-void Floor::selfInit()
-{
-	ModelMatrix = glm::mat4(1.0f);
-	state.init(glm::vec3(0.0f, 0.0f, 0.0f));
 }

@@ -3,6 +3,8 @@
 #include<vector>
 #include"ObjectState.h"
 #include <glm/gtc/quaternion.hpp>
+#include <string>
+#include "envrules.h"
 
 
 class oglVertexObject
@@ -31,10 +33,9 @@ public:
 	oglVertexObject(const char* path);
 	virtual void update() = 0;
 	void render();
-	void load(const char* path);
-	void init(const char* path);
+	void loadObjectData(const char* path);
+	void initOpenGLProperties(const char* path);
 protected:
-	virtual void selfInit() = 0;
 	void logMatrix(glm::mat4 matrix);
 };
 

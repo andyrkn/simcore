@@ -9,6 +9,7 @@
 oglVertexObject::oglVertexObject(const char *path)
 {
 	this->path = path;
+	loadObjectData(path);
 }
 
 void oglVertexObject::render()
@@ -43,10 +44,16 @@ void oglVertexObject::render()
 	glDisableVertexAttribArray(1);
 }
 
-void oglVertexObject::load(const char* path)
+void oglVertexObject::loadObjectData(const char* path)
 {
 	float max = 0, mix = 0, may = 0, miy = 0, maz = 0, miz = 0;
-	std::ifstream f(path, std::ios::in);
+	float bodyx, bodyy, bodyz, elasticity;
+	std::ifstream f(path, std::ios::in);	
+	std::string firstline;
+	std::getline(f, firstline);
+	std::istringstream in(firstline);
+	in >> bodyx >> bodyy >> bodyz >> elasticity;
+
 	for (std::string line; std::getline(f, line);) //read stream line by line
 	{
 		std::istringstream in(line);
@@ -76,11 +83,17 @@ void oglVertexObject::load(const char* path)
 	state.sizes[2] = -miz + maz;
 
 	deltaTime = 0;
-	gravInvul = true;
-	selfInit();
+
+	gravInvul = true; 
+
+	state.init(glm::vec3(bodyx, bodyy, bodyz), this->state.sizes[0] * this->state.sizes[1] * this->state.sizes[2],/*elasticity*/elasticity);
+	TranslationMatrix = glm::translate(glm::mat4(0.0f), state.position);
+	ScaleMatrix = glm::mat4(1.0f);
+	RotationQuat = glm::quat(1, 0, 0, 0);
+	ModelMatrix = TranslationMatrix * glm::mat4_cast(RotationQuat) * ScaleMatrix;
 }
 
-void oglVertexObject::init(const char * path)
+void oglVertexObject::initOpenGLProperties(const char * path)
 {
 	lastTime = glfwGetTime();
 

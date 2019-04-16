@@ -1,28 +1,17 @@
-#include "Cube.h"
+#include "Part.h"
 #include "Logger.h"
 
-Cube::Cube(const char* path) : oglVertexObject(path)
-{
-
-}
-
-Cube::~Cube()
-{
-
-}
-
-void Cube::selfInit()
+Part::Part(const char* path) : oglVertexObject(path)
 {
 	gravInvul = false;
-	state.init(glm::vec3(0.0f, 1.0f, 0.0f), this->state.sizes[0] * this->state.sizes[1] * this->state.sizes[2],/*elasticity*/ 0.0f);
-
-	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
-	ScaleMatrix = glm::mat4(1.0f);
-	RotationQuat = glm::quat(1, 0, 0, 0);
-	ModelMatrix = TranslationMatrix * glm::mat4_cast(RotationQuat) * ScaleMatrix;
 }
 
-void Cube::update()
+Part::~Part()
+{
+
+}
+
+void Part::update()
 {
 	// static float error = 0;
 	double currentTime = glfwGetTime();
@@ -37,10 +26,10 @@ void Cube::update()
 	static int frames = 0;
 	if (frames++ < 120)
 	{	
-		state.evaluate(glm::vec3(1, 0, 0), 0.0166666f);
+		state.evaluate(glm::vec3(1, 0, 0), DT);
 		// logMatrix(TranslationMatrix);
 	}
-	state.recalculate(0.0166666f);
+	state.recalculate(DT);
 
 	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
 	ModelMatrix = TranslationMatrix * glm::mat4_cast(RotationQuat) * ScaleMatrix;

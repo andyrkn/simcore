@@ -4,14 +4,13 @@
 #include "oglVertexObject.h"
 #include "openGlContainer.h"
 #include "Camera.h"
-
-#include "Cube.h"
+#include "Part.h"
 #include "Floor.h"
 
 class Scene
 {
 private:
-	std::vector<Cube> cube;
+	std::vector<Part> parts;
 	std::vector<Floor> floor;
 
 	std::vector<oglObject> objects; 

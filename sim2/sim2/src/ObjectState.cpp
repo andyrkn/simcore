@@ -40,28 +40,32 @@ bool ObjectState::collide(ObjectState & state2)
 {
 	// Logger::log(position);
 	// Logger::log(state2.position);
-	// Logger::log(d);
+	float xdist = state2.position.x - position.x;
+	float ydist = state2.position.y - position.y;
+	float zdist = state2.position.z - position.z;
+	float d = sqrt(xdist + ydist + zdist);
+	// if(d>-1) Logger::log(d);
 
 
-	if ((state2.position[1] < (position[1] + sizes[1] / 2) && state2.position[1] > (position[1] - sizes[1] / 2))
-		|| position[1] < (state2.position[1] + state2.sizes[1] / 2) && position[1] > (state2.position[1] - state2.sizes[1] / 2))
+	if ((state2.position[1] < (position[1] + sizes[1] ) && state2.position[1] > (position[1] - sizes[1] ))
+		|| position[1] < (state2.position[1] + state2.sizes[1] ) && position[1] > (state2.position[1] - state2.sizes[1] ))
 	{
-		if ((state2.position[2] < (position[2] + sizes[2] / 2) && state2.position[2] > (position[2] - sizes[2] / 2))
-			|| position[2] < (state2.position[2] + state2.sizes[2] / 2) && position[2] > (state2.position[2] - state2.sizes[2] / 2))
+		if ((state2.position[2] < (position[2] + sizes[2] ) && state2.position[2] > (position[2] - sizes[2] ))
+			|| position[2] < (state2.position[2] + state2.sizes[2] ) && position[2] > (state2.position[2] - state2.sizes[2] ))
 		{
-			if ((state2.position[0] < (position[0] + sizes[0] / 2) && state2.position[0] > (position[0] - sizes[0] / 2))
-				|| position[0] < (state2.position[0] + state2.sizes[0] / 2) && position[0] > (state2.position[0] - state2.sizes[0] / 2))
+			if ((state2.position[0] < (position[0] + sizes[0] ) && state2.position[0] > (position[0] - sizes[0] ))
+				|| position[0] < (state2.position[0] + state2.sizes[0] ) && position[0] > (state2.position[0] - state2.sizes[0] ))
 			{
 				return true;
 			}
 		}
 	}
 	/*
-	if (position[1] < (state2.position[1] + state2.sizes[1] / 2) && position[1] > (state2.position[1] - state2.sizes[1] / 2))
+	if (position[1] < (state2.position[1] + state2.sizes[1] ) && position[1] > (state2.position[1] - state2.sizes[1] ))
 	{
-		if (position[2] < (state2.position[2] + state2.sizes[2] / 2) && position[2] > (state2.position[2] - state2.sizes[2] / 2))
+		if (position[2] < (state2.position[2] + state2.sizes[2] ) && position[2] > (state2.position[2] - state2.sizes[2] ))
 		{
-			if (position[0] < (state2.position[0] + state2.sizes[0] / 2) && position[0] > (state2.position[0] - state2.sizes[0] / 2))
+			if (position[0] < (state2.position[0] + state2.sizes[0] ) && position[0] > (state2.position[0] - state2.sizes[0] ))
 			{
 				return true;
 			}

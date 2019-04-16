@@ -1,10 +1,12 @@
 #pragma once
 #include "oglVertexObject.h"
-class Floor : public oglVertexObject
+
+class Part : public oglVertexObject
 {
 public:
-	Floor(const char* path);
-	~Floor();
+	Part(const char* path);
+	~Part();
+
 public:
 	void update();
 };
