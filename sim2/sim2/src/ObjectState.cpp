@@ -1,10 +1,12 @@
 #include "ObjectState.h"
 #include "Logger.h"
+#include "Colissions.h"
 
 ObjectState::ObjectState()
 {
 	velocity = glm::vec3(0.0f, 0.0f, 0.0f);
 	momentum = glm::vec3(0.0f, 0.0f, 0.0f);
+	linked = false;
 }
 
 ObjectState::~ObjectState()
@@ -36,41 +38,62 @@ void ObjectState::recalculate(float dt)
 	position = position + velocity * dt;
 }
 
-bool ObjectState::collide(ObjectState & state2)
+void assign(float (&x)[3],glm::vec3 vec)
 {
-	// Logger::log(position);
-	// Logger::log(state2.position);
-	float xdist = state2.position.x - position.x;
-	float ydist = state2.position.y - position.y;
-	float zdist = state2.position.z - position.z;
-	float d = sqrt(xdist + ydist + zdist);
-	// if(d>-1) Logger::log(d);
+	x[0] = vec.x;
+	x[1] = vec.y;
+	x[2] = vec.z;
+}
 
+bool ObjectState::collide(ObjectState& state2, std::vector<glm::vec3> v1, std::vector<glm::vec3> v2)
+{
+	float dx = position.x - state2.position.x;
+	float dy = position.y - state2.position.y;
+	float dz = position.z - state2.position.z;
+	float d = sqrt(dx * dx + dy * dy + dz * dz);
 
-	if ((state2.position[1] < (position[1] + sizes[1] ) && state2.position[1] > (position[1] - sizes[1] ))
-		|| position[1] < (state2.position[1] + state2.sizes[1] ) && position[1] > (state2.position[1] - state2.sizes[1] ))
+	if (d < std::fmax(radius, state2.radius))
 	{
-		if ((state2.position[2] < (position[2] + sizes[2] ) && state2.position[2] > (position[2] - sizes[2] ))
-			|| position[2] < (state2.position[2] + state2.sizes[2] ) && position[2] > (state2.position[2] - state2.sizes[2] ))
+		bool status = false;
+		for (int i = 0; i < v1.size(); i+=3)
 		{
-			if ((state2.position[0] < (position[0] + sizes[0] ) && state2.position[0] > (position[0] - sizes[0] ))
-				|| position[0] < (state2.position[0] + state2.sizes[0] ) && position[0] > (state2.position[0] - state2.sizes[0] ))
+			if (!status)
 			{
-				return true;
+				for (int j = i; j < v2.size(); j += 3)
+				{
+					float p1[3], p2[3], p3[3], q1[3], q2[3], q3[3];
+
+					assign(p1, pointsInWorldSpace(v1[i], rotation, position));
+					assign(p2, pointsInWorldSpace(v1[i + 1], rotation, position));
+					assign(p3, pointsInWorldSpace(v1[i + 2], rotation, position));
+
+					assign(q1, pointsInWorldSpace(v2[j], state2.rotation, state2.position));
+					assign(q2, pointsInWorldSpace(v2[j + 1], state2.rotation, state2.position));
+					assign(q3, pointsInWorldSpace(v2[j + 2], state2.rotation, state2.position));
+
+					if (Colissions::tri_tri_overlap_test_3d(p1, p2, p3, q1, q2, q3) == 1)
+					{
+						status = true; break;
+					}
+				}
 			}
 		}
+		return status;
 	}
-	/*
-	if (position[1] < (state2.position[1] + state2.sizes[1] ) && position[1] > (state2.position[1] - state2.sizes[1] ))
+	else
 	{
-		if (position[2] < (state2.position[2] + state2.sizes[2] ) && position[2] > (state2.position[2] - state2.sizes[2] ))
-		{
-			if (position[0] < (state2.position[0] + state2.sizes[0] ) && position[0] > (state2.position[0] - state2.sizes[0] ))
-			{
-				return true;
-			}
-		}
+		return false;
 	}
-	*/
-	return false;
+}
+
+glm::vec3 ObjectState::pointsInWorldSpace(glm::vec3& v, glm::quat& q,glm::vec3& pos)
+{
+	glm::vec3 qu = rotateByQuat(v, q);
+	return glm::vec3(qu.x + pos.x, qu.y + pos.y, qu.z + pos.z);
+}
+
+glm::vec3 ObjectState::rotateByQuat(glm::vec3& v, glm::quat& q)
+{
+	glm::quat old = q * glm::quat(0, v.x, v.y, v.z) * glm::conjugate(q);
+	return glm::vec3(old.x, old.y, old.z);
 }

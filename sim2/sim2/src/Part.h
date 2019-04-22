@@ -4,7 +4,7 @@
 class Part : public oglVertexObject
 {
 public:
-	Part(const char* path);
+	Part(const char* path, int id);
 	~Part();
 
 public:

@@ -89,6 +89,9 @@
     <ClInclude Include="src\Part.h">
       <Filter>Header Files\SimulatorObjects</Filter>
     </ClInclude>
+    <ClInclude Include="src\Colissions.h">
+      <Filter>Header Files\System\ObjectLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Logger.cpp">

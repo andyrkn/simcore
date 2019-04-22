@@ -6,8 +6,9 @@
 #include "Logger.h"
 
 
-oglVertexObject::oglVertexObject(const char *path)
+oglVertexObject::oglVertexObject(const char *path, int id)
 {
+	this->id = id;
 	this->path = path;
 	loadObjectData(path);
 }
@@ -46,7 +47,7 @@ void oglVertexObject::render()
 
 void oglVertexObject::loadObjectData(const char* path)
 {
-	float max = 0, mix = 0, may = 0, miy = 0, maz = 0, miz = 0;
+	float radius = 0;
 	float bodyx, bodyy, bodyz, elasticity;
 	std::ifstream f(path, std::ios::in);	
 	std::string firstline;
@@ -63,34 +64,30 @@ void oglVertexObject::loadObjectData(const char* path)
 		float x, y, z;
 		in >> x >> y >> z;       //now read the whitespace-separated floats
 
+
 		if (type == "v")
 		{
+			float d = sqrt(x * x + y * y + z * z);
+			radius = std::fmax(radius, d);
+
 			vertices.push_back(glm::vec3(x, y, z));
-			max = std::fmaxf(x, max);
-			mix = std::fminf(x, mix);
-			may = std::fmaxf(y, may);
-			miy = std::fminf(y, miy);
-			maz = std::fmaxf(z, maz);
-			miz = std::fminf(z, miz);
 		}
 		else
 		{
 			colors.push_back(glm::vec3(x, y, z));
 		}
 	}
-	state.sizes[0] = -mix + max;
-	state.sizes[1] = -miy + may;
-	state.sizes[2] = -miz + maz;
 
 	deltaTime = 0;
 
 	gravInvul = true; 
 
-	state.init(glm::vec3(bodyx, bodyy, bodyz), this->state.sizes[0] * this->state.sizes[1] * this->state.sizes[2],/*elasticity*/elasticity);
-	TranslationMatrix = glm::translate(glm::mat4(0.0f), state.position);
+	state.radius = radius;
+	state.init(glm::vec3(bodyx, bodyy, bodyz), radius * radius * radius, /*elasticity*/ elasticity);
+	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
 	ScaleMatrix = glm::mat4(1.0f);
-	RotationQuat = glm::quat(1, 0, 0, 0);
-	ModelMatrix = TranslationMatrix * glm::mat4_cast(RotationQuat) * ScaleMatrix;
+	state.rotation = glm::quat(1, 0, 0, 0);
+	ModelMatrix = TranslationMatrix * glm::mat4_cast(state.rotation) * ScaleMatrix;
 }
 
 void oglVertexObject::initOpenGLProperties(const char * path)

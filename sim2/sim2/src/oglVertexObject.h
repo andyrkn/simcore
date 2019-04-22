@@ -13,11 +13,11 @@ protected:
 	//time ?
 	double lastTime;
 	float deltaTime;
+	int id;
 public:
 	std::string path;
 	//properties
 	glm::mat4 TranslationMatrix;
-	glm::quat RotationQuat;
 	glm::mat4 ScaleMatrix;
 	glm::mat4 ModelMatrix;
 	bool gravInvul;
@@ -30,7 +30,7 @@ public:
 	std::vector<glm::vec3> colors;
 
 public:
-	oglVertexObject(const char* path);
+	oglVertexObject(const char* path,int id);
 	virtual void update() = 0;
 	void render();
 	void loadObjectData(const char* path);

@@ -28,6 +28,20 @@ void Logger::log(glm::vec3 v)
 	std::cout << "\n";
 }
 
+void Logger::log(glm::mat4 m)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++) std::cout << m[i][j] << ' ';
+		std::cout << "\n";
+	}
+}
+
+void Logger::log(glm::quat q)
+{
+	std::cout << q.w << ' ' << q.x << ' ' << q.y << ' ' << q.z << "\n";
+}
+
 
 Logger::~Logger()
 {

@@ -7,7 +7,7 @@ extern "C" {
 
 int main()
 {
-	SimulatorCore simcore(true);
+	SimulatorCore simcore(false);
 	simcore.start();
 	return 0;
 }
