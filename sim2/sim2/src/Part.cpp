@@ -4,6 +4,7 @@
 Part::Part(const char* path, int id) : oglVertexObject(path, id)
 {
 	gravInvul = false;
+	showDirection = true;
 }
 
 Part::~Part()
@@ -12,23 +13,24 @@ Part::~Part()
 }
 
 void Part::update()
-{
-	static int frames = 0;
-	if (frames < 1)
+{ 
+	int i = 0;
+	for (auto& rotation : rotationRules)
 	{
-		frames++;
-	}
+		i++;
+		if (deltaTime >= rotation.startTime && deltaTime <= rotation.endTime)
+		{
+			glm::vec3 p;
+			if (id == 1)
+				state.currentPivot = vertices[i*3];
+				// p = glm::vec3(0, 0, 0);	
+			if (id == 2)
+				p = vertices[3];
 
-	if (id == 1)
-	{
+			p = glm::vec3(0, 0, 0);
 
+			state.rotation = glm::rotate(state.rotation, glm::radians(rotation.degrees), rotation.axis);
+			//state.rotateAroundPivotMatrixCalc(p);
+		}
 	}
-	else if (id == 2)
-	{
-		// state.rotation = glm::rotate(state.rotation, glm::radians(1.0f), glm::vec3(1, 0, 0));
-	}
-	state.recalculate(DT);
-
-	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
-	ModelMatrix = TranslationMatrix * glm::mat4_cast(state.rotation) * ScaleMatrix;
 }

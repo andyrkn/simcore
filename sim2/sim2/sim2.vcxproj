@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;GLM_ENABLE_EXPERIMENTAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -166,6 +166,7 @@
     <ClInclude Include="src\oglVertexObject.h" />
     <ClInclude Include="src\openGlContainer.h" />
     <ClInclude Include="src\OpenGlProxy.h" />
+    <ClInclude Include="src\RotationRule.h" />
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\SimulatorCore.h" />
   </ItemGroup>
@@ -179,6 +180,7 @@
     <ClCompile Include="src\oglObject.cpp" />
     <ClCompile Include="src\oglVertexObject.cpp" />
     <ClCompile Include="src\openGlContainer.cpp" />
+    <ClCompile Include="src\RotationRule.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SimulatorCore.cpp" />
   </ItemGroup>

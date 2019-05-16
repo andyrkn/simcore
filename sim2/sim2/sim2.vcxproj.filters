@@ -92,6 +92,9 @@
     <ClInclude Include="src\Colissions.h">
       <Filter>Header Files\System\ObjectLogic</Filter>
     </ClInclude>
+    <ClInclude Include="src\RotationRule.h">
+      <Filter>Header Files\System\ObjectLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Logger.cpp">
@@ -126,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="src\Part.cpp">
       <Filter>Source Files\SimulatorObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RotationRule.cpp">
+      <Filter>Source Files\System\ObjectLogic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

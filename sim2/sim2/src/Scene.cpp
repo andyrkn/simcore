@@ -25,8 +25,9 @@ void Scene::updateObjects()
 	{
 		if (!obj->gravInvul)
 		{
-			if(!obj->state.linked)
-				obj->state.evaluate(glm::vec3(0.0f, -obj->state.mass * gravForce, 0.0f), DT);
+			obj->state.applyTorque();
+			// if(!obj->state.linked)
+				// obj->state.evaluate(glm::vec3(0.0f, -obj->state.mass * gravForce, 0.0f), DT);
 			for (auto &obj2 : vertexObjects)
 			{
 				if (obj != obj2)
@@ -34,7 +35,7 @@ void Scene::updateObjects()
 					if (obj->state.collide(obj2->state, obj->vertices, obj2->vertices))
 					{
 						obj->state.velocity.y = 0;
-						obj->state.position.y += obj->state.radius / 400;
+						obj->state.position.y += obj->state.radius / 40;
 						obj->state.linked = true;
 					}
 					else
@@ -43,16 +44,16 @@ void Scene::updateObjects()
 					}
 				}
 			}
-			obj->update();
+			obj->coreObjectUpdate();
 		}
 	}
 }	
 
 void Scene::loadObjects(bool headless)
 {
-	// objects.push_back(oglObject("objs/92-sci_fi_gun_obj/scifi_gun.obj","."));
 	parts.push_back(Part("objs/vertexObjects/cube.txt",1));
-	parts.push_back(Part("objs/vertexObjects/something.txt",2));
+	// parts.push_back(Part("objs/vertexObjects/something.txt",2));
+	// parts.push_back(Part("objs/vertexObjects/arrow.txt",3));
 	// parts.push_back(Part("objs/vertexObjects/cube2.txt"));
 	floor.push_back(Floor("objs/vertexObjects/floor.txt"));
 
