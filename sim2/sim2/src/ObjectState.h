@@ -10,6 +10,8 @@ public:
 	//width,height,depth
 	glm::quat rotation;
 	glm::vec3 rotationOffSet;
+	glm::quat singularRotationQuat;
+	glm::quat startingRotation;
 
 	glm::vec3 position;
 	glm::vec3 velocity;
@@ -35,11 +37,9 @@ public:
 
 	glm::vec3 pointsInWorldSpace(glm::vec3& v, glm::quat& q, glm::vec3& pos);
 	glm::vec3 rotateByQuat(glm::vec3& v, glm::quat& q);
-	glm::vec3 rotateByQuatAroundPivot(glm::vec3& v, glm::quat& q, glm::vec3 pivot);
-	void rotateAroundPivotMatrixCalc(glm::vec3& pivot);
+	void rotateAroundPivotWithQuat();
 
 	glm::vec3 rotatedPosition();
-	void stopOffCenterRotation();
 	void checkOffCenterRotation();
 	void applyTorque();
 };

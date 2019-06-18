@@ -37,19 +37,19 @@ public:
 	std::vector<glm::vec3> dir_colors;
 
 	//behvaiour
-	std::vector<RotationRule> rotationRules;
+	std::vector<RotationRule> v_rotationRules;
 
 public:
 	oglVertexObject(const char* path,int id);
 	void coreObjectUpdate();
-	virtual void update() = 0;
 	void render();
+	virtual void update() = 0;
 	void loadObjectData(const char* path);
 	void initOpenGLProperties(const char* path);
 	void initOpenGLDirection();
 protected:
-	void logMatrix(glm::mat4 matrix);
-	void recalculations();
 	void drawDirection();
+private:
+	void recalculations();
 };
 

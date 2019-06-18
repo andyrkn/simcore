@@ -1,0 +1,43 @@
+\chapter{Tehnologii Folosite}
+
+intro
+
+\section{C++}
+ 
+Mediul de lucru este C++17 \footnote{\url{http://www.cplusplus.com/}}sub Visual Studio 2019. C++ a fost ales in principal datorita performantei si a experientei anterioare. Prin intermediul OOP au fost create structuri
+pentru o implementare cat mai naturala a motorului fizic. 
+
+\section{OpenGL}
+ 
+Reprezentarea grafica se realizeaza cu ajutorul librariei OpenGL 3.3\footnote{\url{https://www.opengl.org/}}. Motivatia librariei OpenGL a fost atat introducerea ei in Anul 3 cat si permitarea implementarii cat mai primitiva a
+motorului fizic.
+
+\section{OpenGL Mathematics (GLM)}
+ 
+Fiind un motor fizic, este necesar ca toate calculele matematice sa fie realizate cat mai corect si rapid, astfel libraria GLM \footnote{\url{https://glm.g-truc.net/0.9.9/index.html/}} a fost aleasa pentru viteza si compatibilitatea ei cu OpenGL.
+Principalele structuri folosite din GLM au fost:
+\begin{itemize}
+    \item glm::vec2/glm::vec3/glm::vec4 reprezentand vectori. 
+    \item glm::quat, (glm quaternions implementati sub forma w,x,y,z). Folositi in principal pentru reprezentarea orientarii obiectelor. Motivatia quaternionilor in favoarea 
+    matricelor de rotatie a fost performanta si evitarea problemelor unghiurilor euler, cum ar fi Gimbal Lock \footnote{\url{https://en.wikipedia.org/wiki/Gimbal_lock/}}
+    \item glm::mat3/glm::mat4, Matrici patratice, in principal pentru matricile MVP.
+\end{itemize}
+Pe langa structuri, metodele esentiale:
+\begin{itemize}
+    \item glm::rotate, folosit pentru a roti quaternioni dupa o axa de rotatie cu un anumit unghi
+    \item glm::translate, pentru translatea matricii de translatie
+    \item glm::dot/glm::cos
+    \item glm::mat4\_cast pentru conversia din quaternioni in matrici de rotatie.
+\end{itemize}
+Alternative au fost: Eigen \footnote{\url{http://eigen.tuxfamily.org/index.php?title=Main_Page}} si CML \footnote{\url{https://github.com/demianmnave/CML/wiki/The-Configurable-Math-Library}}.Toate librariile fiind testate in \url{https://github.com/mfoo/Math-Library-Test}.
+
+\section{GLFW}
+ 
+Pentru initializarea ferestrei OpenGL a fost folosit \footnote{\url{https://www.glfw.org/}} GLFW. Aceasta librarie ofera in mod simplistic un context OpenGL si mai multe optiuni cum ar fi VSync sau DoubleBuffering. De asemenea,
+keyboard si mouse events sunt capturate prin GLFW.
+
+Alternative au fost : GLUT \footnote{\url{http://freeglut.sourceforge.net/}}. GLFW a fost ales in favoarea GLUT deoarece pe masina unde a fost dezvoltata aplicatia, GLUT nu reusea sa intanstieze OpenGL 3.3+.
+
+\section{Concluzii}
+
+C++ impreuna cu OpenGL si GLM ofera un mediu de lucru cat mai aproape de procesor si in acelasi timp un set de structuri si unelte pentru dezvoltarea naturala a Motorului Fizic.

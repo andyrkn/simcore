@@ -26,6 +26,15 @@ void Logger::log(glm::vec3 v)
 		std::cout << v[i] << ' ';
 	}
 	std::cout << "\n";
+
+}void Logger::log(std::string text, glm::vec3 v)
+{
+	std::cout << text << ' ';
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << v[i] << ' ';
+	}
+	std::cout << "\n";
 }
 
 void Logger::log(glm::mat4 m)

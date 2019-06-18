@@ -7,8 +7,11 @@ ObjectState::ObjectState()
 	velocity = glm::vec3(0.0f);
 	momentum = glm::vec3(0.0f);
 	rotationOffSet = glm::vec3(0.0f);
+
 	activePivotalRotation = false;
 	currentPivot = glm::vec3(0.0f);
+	singularRotationQuat = glm::quat(1, 0, 0, 0);
+
 	linked = false;
 }
 
@@ -104,36 +107,18 @@ glm::vec3 ObjectState::pointsInWorldSpace(glm::vec3& v, glm::quat& q,glm::vec3& 
 
 glm::vec3 ObjectState::rotateByQuat(glm::vec3& v, glm::quat& q)
 {
-	glm::quat old = q * glm::quat(0, v.x, v.y, v.z) * glm::conjugate(q);
-	return glm::vec3(old.x, old.y, old.z);
+	return q * v;
 }
 
-glm::vec3 ObjectState::rotateByQuatAroundPivot(glm::vec3& v, glm::quat& q, glm::vec3 pivot)
-{
-	glm::vec3 point = v - pivot;
-	return rotateByQuat(point, q);
-}
-
-void ObjectState::rotateAroundPivotMatrixCalc(glm::vec3& pivot)
+void ObjectState::rotateAroundPivotWithQuat()
 {
 	activePivotalRotation = true;
-	/*
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), pivot);
-	glm::mat4 resultMatrix = translationMatrix * glm::mat4_cast(q) * glm::inverse(translationMatrix);
-
-	rotationOffSet = glm::vec3(resultMatrix[3][0], resultMatrix[3][1], resultMatrix[3][2]);
-	rotationOffSet -= pivot;
-	*/
-
-	// glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), position);
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), -pivot);
-	glm::mat4 resultMatrix = translationMatrix * glm::mat4_cast(rotation) * glm::inverse(translationMatrix);
-	translationMatrix = glm::translate(resultMatrix, pivot);
 	
-	rotationOffSet = glm::vec3(translationMatrix[3][0], translationMatrix[3][1], translationMatrix[3][2]);
+	glm::vec3 negp = -currentPivot;
+	glm::vec3 res = singularRotationQuat * negp;
+	rotationOffSet = res + currentPivot;
 	
-	// rotation = glm::quat(resultMatrix);
-	// Logger::log(rotationOffSet);
+	Logger::log("new center:", rotationOffSet);
 }
    
 glm::vec3 ObjectState::rotatedPosition()
@@ -141,18 +126,17 @@ glm::vec3 ObjectState::rotatedPosition()
 	return position + rotationOffSet;
 }
 
-void ObjectState::stopOffCenterRotation()
-{
-	position += rotationOffSet;
-	rotationOffSet = glm::vec3(0.0f);
-}
-
 void ObjectState::checkOffCenterRotation()
 {
 	if (!activePivotalRotation)
 	{
 		currentPivot = glm::vec3(0, 0, 0);
-		stopOffCenterRotation();
+
+		singularRotationQuat = glm::quat(1, 0, 0, 0);
+		startingRotation = rotation;
+
+		position += rotationOffSet;
+		rotationOffSet = glm::vec3(0.0f);
 	}
 	else
 	{
@@ -168,6 +152,6 @@ void ObjectState::applyTorque()
 	// Logger::log(glm::degrees(res));
 	// Logger::log(direction);
 
-	Logger::log(glm::degrees(glm::orientedAngle(direction, glm::vec3(0, -1, 0), glm::vec3(1, 0, 0))));
+	// Logger::log(glm::degrees(glm::orientedAngle(direction, glm::vec3(0, -1, 0), glm::vec3(1, 0, 0))));
 }
 

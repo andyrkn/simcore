@@ -25,9 +25,9 @@ void Scene::updateObjects()
 	{
 		if (!obj->gravInvul)
 		{
-			obj->state.applyTorque();
-			// if(!obj->state.linked)
-				// obj->state.evaluate(glm::vec3(0.0f, -obj->state.mass * gravForce, 0.0f), DT);
+			//obj->state.applyTorque();
+			//if(!obj->state.linked)
+				//obj->state.evaluate(glm::vec3(0.0f, -obj->state.mass * gravForce, 0.0f), DT);
 			for (auto &obj2 : vertexObjects)
 			{
 				if (obj != obj2)
@@ -52,6 +52,7 @@ void Scene::updateObjects()
 void Scene::loadObjects(bool headless)
 {
 	parts.push_back(Part("objs/vertexObjects/cube.txt",1));
+	parts.push_back(Part("objs/vertexObjects/simple triangle.txt", 2));
 	// parts.push_back(Part("objs/vertexObjects/something.txt",2));
 	// parts.push_back(Part("objs/vertexObjects/arrow.txt",3));
 	// parts.push_back(Part("objs/vertexObjects/cube2.txt"));

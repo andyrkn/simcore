@@ -13,6 +13,7 @@ public:
 	void static log(std::string str);
 	void static log(float d);
 	void static log(glm::vec3 v);
+	void static log(std::string text, glm::vec3 v);
 	void static log(glm::mat4 m);
 	void static log(glm::quat q);
 };

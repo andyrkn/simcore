@@ -16,9 +16,9 @@ oglVertexObject::oglVertexObject(const char *path, int id)
 
 void oglVertexObject::coreObjectUpdate()
 {
-	state.checkOffCenterRotation();
-
 	update();
+
+	state.checkOffCenterRotation();
 
 	recalculations();
 }
@@ -81,7 +81,7 @@ void oglVertexObject::loadObjectData(const char* path)
 		std::getline(f, line);
 		std::istringstream in(line);
 		in >> rule.startTime >> rule.endTime >> rule.degrees >> rule.axis.x >> rule.axis.y >> rule.axis.z;
-		this->rotationRules.push_back(rule);
+		this->v_rotationRules.push_back(rule);
 	}
 
 	std::string bodyline;
@@ -195,30 +195,17 @@ void oglVertexObject::initOpenGLDirection()
 	glBufferData(GL_ARRAY_BUFFER, dir_colors.size() * sizeof(glm::vec3), &dir_colors[0], GL_STATIC_DRAW);
 }
 
-void oglVertexObject::logMatrix(glm::mat4 matrix)
-{
-
-	for (int i = 0; i < 4; i++)
-		std::cout << matrix[i][0] << ' '\
-		<< matrix[i][1] << ' '\
-		<< matrix[i][2] << ' '\
-		<< matrix[i][3] << ' ' << "\n";
-
-	std::cout << "\n-------------------------------------\n";
-}
-
 void oglVertexObject::recalculations()
 {
 	deltaTime += DT;
 	state.recalculate(DT);
+
 	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.rotatedPosition());
 
-	glm::mat4 modelMatrix =
-		glm::inverse(glm::translate(glm::mat4(1.0f), state.currentPivot)) *
+	ModelMatrix =
+		TranslationMatrix *
 		glm::mat4_cast(state.rotation) *
-		glm::translate(glm::mat4(1.0f), state.currentPivot);
-
-	ModelMatrix = glm::translate(glm::mat4(1.0f), state.rotatedPosition()) * modelMatrix;
+		ScaleMatrix;
 }
 
 void oglVertexObject::drawDirection()
