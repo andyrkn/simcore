@@ -51,6 +51,14 @@ void Logger::log(glm::quat q)
 	std::cout << q.w << ' ' << q.x << ' ' << q.y << ' ' << q.z << "\n";
 }
 
+void Logger::log(std::vector<glm::vec3> v)
+{
+	for (auto& i : v)
+	{
+		Logger::log(i);
+	}
+}
+
 
 Logger::~Logger()
 {

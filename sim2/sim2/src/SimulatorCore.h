@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "oglVertexObject.h"
 #include "openGlContainer.h"
+#include "AGENV.h"
 
 class SimulatorCore
 {
@@ -16,14 +17,17 @@ public:
 	openGlContainer container;
 
 public:
+	SimulatorCore(GAENV env, bool headless = false);
 	SimulatorCore(bool headless = false);
 	~SimulatorCore();
 	void start();
+	void singleCromozomTest(glm::vec4 cromozom);
+	std::vector<float> runAG();
 
 private:
 	void runHead();
 	void runHeadless();
-	void initScene();
+	void initCore(bool headless);
 	void render();
 	void update();
 	void checkGlError();

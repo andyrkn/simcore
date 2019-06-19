@@ -3,6 +3,7 @@
 
 Scene::Scene()
 {
+	breakStatus = false;
 }
 
 
@@ -16,66 +17,163 @@ void Scene::renderObjects(openGlContainer &container, Camera &camera)
 		glm::mat4 MVP = camera.ProjectionMatrix * camera.ViewMatrix * obj->ModelMatrix;
 		glUniformMatrix4fv(container.MatrixID, 1, GL_FALSE, &MVP[0][0]);
 		obj->render();
-	}	
+	}
 }
 
 void Scene::updateObjects()
 {
-	for (auto &obj : vertexObjects)
+	for (int i = 0; i < vertexObjects.size(); i++)
 	{
+		auto& obj = vertexObjects[i];
+
 		if (!obj->gravInvul)
 		{
-			//obj->state.applyTorque();
-			//if(!obj->state.linked)
-				//obj->state.evaluate(glm::vec3(0.0f, -obj->state.mass * gravForce, 0.0f), DT);
-			for (auto &obj2 : vertexObjects)
+			if (!obj->state.linked)
 			{
-				if (obj != obj2)
+				obj->state.evaluate(glm::vec3(0.0f, -obj->state.mass * gravForce, 0.0f), DT);
+			}
+
+			for (int j = i + 1; j < vertexObjects.size(); j++)
+			{
+				auto& obj2 = vertexObjects[j];
+
+				if (obj != obj2 && obj2->gravInvul) // obj2 gravinvul means we only colide with immovable objects
 				{
 					if (obj->state.collide(obj2->state, obj->vertices, obj2->vertices))
 					{
-						obj->state.velocity.y = 0;
-						obj->state.position.y += obj->state.radius / 40;
-						obj->state.linked = true;
+						obj->state.position += obj->state.velocity * (DT*4);
+
+						if (env.running) //  check if there's an active genetic environment
+						{
+							if (j != vertexObjects.size() - 1)
+							{
+								// breakC = true; 
+								// Logger::log(obj->id);
+								if (AGResults[i] == -1)
+								{
+									AGResults[i] = computeFitness(i, true);
+								}
+							}
+						}
 					}
 					else
-					{
-						obj->state.linked = false;
+					{ 
+						// obj->state.linked = false;
 					}
 				}
 			}
+
 			obj->coreObjectUpdate();
 		}
 	}
-}	
+}
 
 void Scene::loadObjects(bool headless)
 {
-	parts.push_back(Part("objs/vertexObjects/cube.txt",1));
-	parts.push_back(Part("objs/vertexObjects/simple triangle.txt", 2));
-	// parts.push_back(Part("objs/vertexObjects/something.txt",2));
-	// parts.push_back(Part("objs/vertexObjects/arrow.txt",3));
-	// parts.push_back(Part("objs/vertexObjects/cube2.txt"));
+	parts.push_back(Part("objs/vertexObjects/cube.txt", 1));
+	floor.push_back(Floor("objs/vertexObjects/target.txt"));
 	floor.push_back(Floor("objs/vertexObjects/floor.txt"));
 
-	for (auto &part : parts) 
+	for (auto& part : parts)
 	{
 		vertexObjects.push_back(&part);
 	}
 
 	vertexObjects.push_back(&floor[0]);
+	vertexObjects.push_back(&floor[1]);
 
-	for (auto &obj : vertexObjects)
+	if (!headless)
 	{
-		if (!headless)
-		{
-			obj->initOpenGLProperties(obj->path.c_str());
-		}
+		initObjectsOpenGL();
+	}
+}
+
+void Scene::loadAGObjects(bool headless, GAENV env)
+{
+	this->env = env;
+
+	for (int i = 0; i < env.popsize; i++)
+	{
+		parts.push_back(Part("objs/vertexObjects/cube.txt", i));
+		parts[i].state.elasticity = env.elasticities[i];
+		AGResults.push_back(-1);
+	}
+	for (auto& part : parts)
+	{
+		vertexObjects.push_back(&part);
+	}
+
+	floor.push_back(Floor("objs/vertexObjects/target.txt"));
+	floor.push_back(Floor("objs/vertexObjects/floor.txt"));
+	vertexObjects.push_back(&floor[0]);
+	vertexObjects.push_back(&floor[1]);
+
+	if (!headless)
+	{
+		initObjectsOpenGL();
 	}
 }
 
 bool Scene::breakCondition()
 {
-	// return parts[0].state.position.x > 4 ? true : false;
-	return false;
+	if (vertexObjects[0]->deltaTime > 5.0f) breakStatus = true;
+	return breakStatus;
+}
+
+std::vector<float> Scene::getFitness()
+{
+	for (int i = 0; i < env.popsize; i++)
+	{
+		if (AGResults[i] == -1)
+		{
+			AGResults[i] = computeFitness(i, false);
+		}
+	}
+	return AGResults;
+}
+
+float Scene::computeFitness(int i, bool hit)
+{
+	glm::vec3 s2_position = vertexObjects[vertexObjects.size() - 2]->state.position;
+	glm::vec3 s1_position = vertexObjects[i]->state.position;
+
+	float dx = s1_position.x - s2_position.x;
+	float dy = s1_position.y - s2_position.y;
+	float dz = s1_position.z - s2_position.z;
+
+	float d;
+	if (!hit) d = sqrt(dx * dx + dy * dy + dz * dz) * vertexObjects[0]->deltaTime * vertexObjects[0]->deltaTime; // fitness = distance * time
+	if (hit) d = vertexObjects[0]->deltaTime; // if he hit the target, distance is considered 0 (for now)
+
+	// Logger::log(vertexObjects[i]->state.position);
+	// Logger::log(d);
+	return d;
+}
+
+void Scene::applyAG()
+{
+	if (vertexObjects[0]->deltaTime < 0.50f)
+	{
+		for (int i = 0; i < env.popsize; i++)
+		{
+			vertexObjects[i]->state.evaluate(env.forces[i], DT);
+		}
+	}
+}
+
+void Scene::TestSingleObject(glm::vec3 F, float elasticity)
+{
+	if (vertexObjects[0]->deltaTime < 0.50f)
+	{
+		vertexObjects[0]->state.evaluate(F, DT);
+		vertexObjects[0]->state.elasticity = elasticity;
+	}
+}
+
+void Scene::initObjectsOpenGL()
+{
+	for (auto& obj : vertexObjects)
+	{
+		obj->initOpenGLProperties(obj->path.c_str());
+	}
 }

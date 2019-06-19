@@ -3,13 +3,14 @@
 
 SimulatorCore::SimulatorCore(bool headless)
 {
-	this->headless = headless;
-	if (!headless)
-	{
-		container.init();
-		camera.setContainer(&this->container);
-	}
-	initScene();
+	initCore(headless);
+	scene.loadObjects(headless);
+}
+
+SimulatorCore::SimulatorCore(GAENV env, bool headless)
+{
+	initCore(headless);
+	scene.loadAGObjects(headless, env);
 }
 
 SimulatorCore::~SimulatorCore() {}
@@ -28,14 +29,19 @@ void SimulatorCore::runHeadless()
 {
 	while (true)
 	{
-		if (scene.breakCondition()) break;
-		update();
+		if (scene.breakCondition()) { break; }
+		else { update(); }
 	}
 }
 
-void SimulatorCore::initScene()
+void SimulatorCore::initCore(bool headless)
 {
-	scene.loadObjects(headless);
+	this->headless = headless;
+	if (!headless)
+	{
+		container.init();
+		camera.setContainer(&this->container);
+	}
 }
 
 void SimulatorCore::render()
@@ -65,6 +71,30 @@ void SimulatorCore::checkGlError()
 	}
 }
 
+std::vector<float> SimulatorCore::runAG()
+{
+	if (!headless)
+	{
+		while (glfwGetKey(container.window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
+		{
+			if (scene.breakCondition()) break;
+			scene.applyAG();
+			render();
+		}
+		glfwTerminate();
+	}
+	else
+	{
+		while (true)
+		{
+			if (scene.breakCondition()) { break; }
+			else { scene.applyAG(); update(); }
+		}
+	}
+
+	return scene.getFitness();
+}
+
 void SimulatorCore::start()
 {
 	if (headless)
@@ -75,4 +105,15 @@ void SimulatorCore::start()
 	{
 		runHead();
 	}
+}
+
+void SimulatorCore::singleCromozomTest(glm::vec4 cromozom)
+{
+	while (glfwGetKey(container.window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
+	{
+		if (scene.breakCondition()) break;
+		scene.TestSingleObject(glm::vec3(cromozom), cromozom.w);
+		render();
+	}
+	glfwTerminate();
 }

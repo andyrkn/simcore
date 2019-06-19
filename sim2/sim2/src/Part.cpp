@@ -5,7 +5,6 @@ Part::Part(const char* path, int id) : oglVertexObject(path, id)
 {
 	gravInvul = false;
 	showDirection = true;
-	
 }
 
 Part::~Part()
@@ -15,8 +14,8 @@ Part::~Part()
 
 void Part::update()
 {
+	/*
 	int i = 0;
-	
 	for (auto& rotation : v_rotationRules)
 	{
 		i++;
@@ -44,8 +43,9 @@ void Part::update()
 			state.rotateAroundPivotWithQuat();
 		}
 	}
+	*/
 	
-	Logger::log("cp: ",state.currentPivot);
-	Logger::log(state.rotation);
+	// Logger::log("cp: ",state.currentPivot);
+	// Logger::log(state.rotation);
 	// Logger::log("center", state.position);
 }

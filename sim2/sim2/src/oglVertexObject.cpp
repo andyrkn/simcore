@@ -57,7 +57,7 @@ void oglVertexObject::render()
 
 	if (showDirection)
 	{
-		drawDirection();
+		// drawDirection();
 	}
 }
 
@@ -114,6 +114,8 @@ void oglVertexObject::loadObjectData(const char* path)
 		}
 	}
 
+	f.close();
+
 	centroid /= vertices.size();
 
 	for (auto& vertice : vertices)
@@ -126,7 +128,7 @@ void oglVertexObject::loadObjectData(const char* path)
 	gravInvul = true; 
 	state.radius = radius;
 	state.init(body, radius * radius * radius, /*elasticity*/ elasticity);
-
+	
 	TranslationMatrix = glm::translate(glm::mat4(1.0f), state.position);
 	ScaleMatrix = glm::mat4(1.0f);
 	state.rotation = glm::quat(1, 0, 0, 0);

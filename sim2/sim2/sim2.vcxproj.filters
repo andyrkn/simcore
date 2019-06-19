@@ -57,6 +57,12 @@
     <Filter Include="Header Files\SIMULATOR\System\ObjectLogic">
       <UniqueIdentifier>{52e8ef6f-c260-4538-ba90-62ad7103d1e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AG">
+      <UniqueIdentifier>{6353934a-db1b-4409-9ee2-75eab38d0d11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AG">
+      <UniqueIdentifier>{5061a3b0-8028-47d5-ab76-8597f921eae9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\openGlContainer.h">
@@ -101,6 +107,15 @@
     <ClInclude Include="src\RotationRule.h">
       <Filter>Header Files\SIMULATOR\System\ObjectLogic</Filter>
     </ClInclude>
+    <ClInclude Include="src\AGENV.h">
+      <Filter>Header Files\AG</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GeneticAlgorithm.h">
+      <Filter>Header Files\AG</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cromozome.h">
+      <Filter>Header Files\AG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Logger.cpp">
@@ -138,6 +153,15 @@
     </ClCompile>
     <ClCompile Include="sim2.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AGENV.cpp">
+      <Filter>Source Files\AG</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GeneticAlgorithm.cpp">
+      <Filter>Source Files\AG</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cromozome.cpp">
+      <Filter>Source Files\AG</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

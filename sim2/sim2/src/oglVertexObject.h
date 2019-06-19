@@ -3,6 +3,7 @@
 #include<vector>
 #include"ObjectState.h"
 #include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/normal.hpp>
 #include <string>
 #include "RotationRule.h"
 #include "envrules.h"
@@ -11,10 +12,11 @@
 class oglVertexObject
 {
 protected:
-	float deltaTime;
-	int id;
 	int frames;
 public:
+	int id;
+	float deltaTime;
+
 	std::string path;
 	//properties
 	glm::mat4 TranslationMatrix;

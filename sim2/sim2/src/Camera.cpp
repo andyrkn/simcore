@@ -4,7 +4,7 @@
 
 Camera::Camera()
 {
-	position = glm::vec3(0, 1, 5);
+	position = glm::vec3(-50, 10, 40);
 
 	ProjectionMatrix = glm::perspective((float)glm::radians(360.0), 4.0f / 3.0f, 0.1f, 100.0f);
 	ViewMatrix = glm::lookAt(position, position, glm::vec3(0, 0, 0));

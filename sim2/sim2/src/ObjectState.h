@@ -2,6 +2,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/normal.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
 class ObjectState
@@ -15,7 +16,9 @@ public:
 
 	glm::vec3 position;
 	glm::vec3 velocity;
+	glm::vec3 angularVelocity;
 	glm::vec3 momentum;
+	glm::mat3 inertiaTensor;
 
 	glm::vec3 direction;
 	glm::vec3 currentPivot;
