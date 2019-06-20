@@ -18,8 +18,6 @@ void oglVertexObject::coreObjectUpdate()
 {
 	update();
 
-	state.checkOffCenterRotation();
-
 	recalculations();
 }
 

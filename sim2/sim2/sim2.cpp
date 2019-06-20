@@ -7,7 +7,7 @@
 void noAG()
 {
 	SimulatorCore simcore(false);
-	simcore.singleCromozomTest(glm::vec4(63, 34, 13, 0.2));
+	simcore.singleCromozomTest(glm::vec4(63, 46, 3 , 0.7));
 }
 
 void AGHead()
@@ -17,7 +17,7 @@ void AGHead()
 
 void AGHeadless()
 {
-	GeneticAlgorithm GA(40);
+	GeneticAlgorithm GA(100);
 	GA.start();
 }
 

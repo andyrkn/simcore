@@ -144,10 +144,8 @@ void ObjectState::rotateAroundPivotWithQuat()
 	activePivotalRotation = true;
 	
 	glm::vec3 negp = -currentPivot;
-	glm::vec3 res = singularRotationQuat * negp;
+	glm::vec3 res = rotation * negp;
 	rotationOffSet = res + currentPivot;
-	
-	Logger::log("new center:", rotationOffSet);
 }
 
 glm::vec3 ObjectState::rotatedPosition()
@@ -157,20 +155,10 @@ glm::vec3 ObjectState::rotatedPosition()
 
 void ObjectState::checkOffCenterRotation()
 {
-	if (!activePivotalRotation)
-	{
-		currentPivot = glm::vec3(0, 0, 0);
-
-		singularRotationQuat = glm::quat(1, 0, 0, 0);
-		startingRotation = rotation;
-
-		position += rotationOffSet;
-		rotationOffSet = glm::vec3(0.0f);
-	}
-	else
-	{
-		activePivotalRotation = false;
-	}
+	currentPivot = glm::vec3(0, 0, 0);
+	position += rotationOffSet;
+	rotationOffSet = glm::vec3(0.0f);
+	activePivotalRotation = false;
 }
 
 void ObjectState::applyTorque()

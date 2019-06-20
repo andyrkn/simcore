@@ -21,5 +21,7 @@ private:
 	void initPopulation();
 	void tournamentSelection();
 	void computeFitness();
+	void visualizePopulation();
+	void visualizeIndividual(int index);
 };
 

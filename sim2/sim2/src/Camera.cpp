@@ -4,9 +4,9 @@
 
 Camera::Camera()
 {
-	position = glm::vec3(-50, 10, 40);
+	position = glm::vec3(-35, 10, 45);
 
-	ProjectionMatrix = glm::perspective((float)glm::radians(360.0), 4.0f / 3.0f, 0.1f, 100.0f);
+	ProjectionMatrix = glm::perspective((float)glm::radians(360.0), 16.0f / 9.0f, 0.1f, 100.0f);
 	ViewMatrix = glm::lookAt(position, position, glm::vec3(0, 0, 0));
 }
 
@@ -27,10 +27,10 @@ void Camera::update()
 
 	double xpos, ypos;
 	glfwGetCursorPos(container->window, &xpos, &ypos);
-	glfwSetCursorPos(container->window, 1024 / 2, 768 / 2);
+	glfwSetCursorPos(container->window, 1280 / 2, 720 / 2);
 
-	horizontalAngle += mouseSpeed * float(1024 / 2 - xpos);
-	verticalAngle += mouseSpeed * float(768 / 2 - ypos);
+	horizontalAngle += mouseSpeed * float(1280 / 2 - xpos);
+	verticalAngle += mouseSpeed * float(720 / 2 - ypos);
 
 	glm::vec3 direction(
 		cos(verticalAngle) * sin(horizontalAngle),
@@ -67,7 +67,7 @@ void Camera::update()
 		position -= right * deltaTime * speed;
 	}
 
-	ProjectionMatrix = glm::perspective((float)glm::radians(FOV), 4.0f / 3.0f, 0.1f, 100.0f);
+	ProjectionMatrix = glm::perspective((float)glm::radians(FOV), 16.0f / 9.0f, 0.1f, 100.0f);
 	ViewMatrix = glm::lookAt(position, position + direction, up);
 
 	lastTime = currentTime;

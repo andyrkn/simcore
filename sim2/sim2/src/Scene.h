@@ -40,5 +40,6 @@ public:
 
 private:
 	void initObjectsOpenGL();
+	void loadObstacles();
 };
 

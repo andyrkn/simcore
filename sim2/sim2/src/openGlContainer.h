@@ -11,10 +11,11 @@ public:
 	GLuint MatrixID;
 	GLuint VertexArrayID;
 public:
-	openGlContainer(int _w = 1024, int _h = 768);
+	openGlContainer(int _w = 1280, int _h = 720);
 	~openGlContainer();
 	void init();
 private:
 	void loadShaders(const char* vertex_path, const char* fragment_path);
 };
 
+ 

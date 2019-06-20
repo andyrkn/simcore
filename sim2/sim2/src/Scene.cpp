@@ -45,7 +45,7 @@ void Scene::updateObjects()
 
 						if (env.running) //  check if there's an active genetic environment
 						{
-							if (j != vertexObjects.size() - 1)
+							if (j == vertexObjects.size() - 2)
 							{
 								// breakC = true; 
 								// Logger::log(obj->id);
@@ -63,24 +63,21 @@ void Scene::updateObjects()
 				}
 			}
 
-			obj->coreObjectUpdate();
 		}
+		obj->coreObjectUpdate();
 	}
 }
 
 void Scene::loadObjects(bool headless)
 {
 	parts.push_back(Part("objs/vertexObjects/cube.txt", 1));
-	floor.push_back(Floor("objs/vertexObjects/target.txt"));
-	floor.push_back(Floor("objs/vertexObjects/floor.txt"));
 
 	for (auto& part : parts)
 	{
 		vertexObjects.push_back(&part);
 	}
-
-	vertexObjects.push_back(&floor[0]);
-	vertexObjects.push_back(&floor[1]);
+	
+	loadObstacles();
 
 	if (!headless)
 	{
@@ -103,10 +100,7 @@ void Scene::loadAGObjects(bool headless, GAENV env)
 		vertexObjects.push_back(&part);
 	}
 
-	floor.push_back(Floor("objs/vertexObjects/target.txt"));
-	floor.push_back(Floor("objs/vertexObjects/floor.txt"));
-	vertexObjects.push_back(&floor[0]);
-	vertexObjects.push_back(&floor[1]);
+	loadObstacles();
 
 	if (!headless)
 	{
@@ -115,7 +109,7 @@ void Scene::loadAGObjects(bool headless, GAENV env)
 }
 
 bool Scene::breakCondition()
-{
+{ 
 	if (vertexObjects[0]->deltaTime > 5.0f) breakStatus = true;
 	return breakStatus;
 }
@@ -175,5 +169,18 @@ void Scene::initObjectsOpenGL()
 	for (auto& obj : vertexObjects)
 	{
 		obj->initOpenGLProperties(obj->path.c_str());
+	}
+} 
+ 
+void Scene::loadObstacles()
+{
+	floor.push_back(Floor("objs/vertexObjects/top obstacle.txt", -4));
+	floor.push_back(Floor("objs/vertexObjects/obstacle1.txt", -1));
+	floor.push_back(Floor("objs/vertexObjects/target.txt", -2));
+	floor.push_back(Floor("objs/vertexObjects/floor.txt", -3));
+
+	for (auto& immovable : floor)
+	{
+		vertexObjects.push_back(&immovable);
 	}
 }

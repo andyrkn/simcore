@@ -29,6 +29,23 @@ GAENV GeneticAlgorithm::getEnv(std::vector<Cromozome>::iterator first, std::vect
 	return env;
 }
 
+void GeneticAlgorithm::visualizePopulation()
+{
+	GAENV env = getEnv(std::begin(population), std::end(population));
+	SimulatorCore core(env, false);
+	core.runAG();
+
+}
+
+void GeneticAlgorithm::visualizeIndividual(int index)
+{
+	glm::vec4 cromozome = population[fitness[index].first].toVec4();
+	cromozome.w /= 10;
+
+	SimulatorCore core2(false);
+	core2.singleCromozomTest(cromozome);
+}
+
 void GeneticAlgorithm::initPopulation()
 {
 	std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
@@ -108,6 +125,7 @@ void GeneticAlgorithm::computeFitness()
 	// printPop();
 }
 
+
 void GeneticAlgorithm::printPop()
 {
 	for (auto it = std::begin(fitness); it != std::end(fitness); it++)
@@ -127,23 +145,39 @@ void GeneticAlgorithm::printPop()
 void GeneticAlgorithm::tournamentSelection()
 {
 	float p = 0.7;
-	std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
+	std::mt19937 generator(std::chrono::system_clock::now().time_since_epoch().count());
 
-	std::uniform_int_distribution<int> selection_distribution(1, 4);
+	std::uniform_int_distribution<int> selection_distribution(1, 3);
 	std::uniform_int_distribution<int> probability_distribution(1, 1000);
-	std::uniform_int_distribution<int> crossover_distribution(1, 21);
-	std::uniform_int_distribution<int> tournament_distribution(1, popsize - 1);
+	std::uniform_int_distribution<int> crossover_distribution(0, 21);
+	std::uniform_int_distribution<int> tournament_distribution(0, popsize - 1);
 
 	std::vector<Cromozome*> selected;
 	std::vector<Cromozome> newPopulation;
 
 	int tournamentSize = selection_distribution(generator) * 2;
 
-	// select k candidates at tourney nrTourney
-	std::set<int> selected_indexes;
-	while (selected_indexes.size() < tournamentSize)	selected_indexes.insert(tournament_distribution(generator));
+	// run tournaments and select top 2 candidates from each tournament
+	std::set<int> champions;
+	for (int i = 0; i < tournamentSize / 2; i++)
+	{
+		std::set<int> mock_tourney;
+		while (mock_tourney.size() < tournamentSize)
+		{
+			int candidate = tournament_distribution(generator);
+			if (!(champions.find(candidate) != std::end(champions)))
+			{
+				mock_tourney.insert(candidate);
+			}
+		}
+		auto it = std::begin(mock_tourney);
+		champions.insert(*it);
+		std::advance(it, 1);
+		champions.insert(*it);
+	}
 
-	for (auto it = std::begin(selected_indexes); it != std::end(selected_indexes); it++)
+	// move champions to new population
+	for (auto it = std::begin(champions); it != std::end(champions); it++)
 	{
 		selected.push_back(&population[fitness[*it].first]);
 		newPopulation.push_back(population[fitness[*it].first]);
@@ -152,32 +186,49 @@ void GeneticAlgorithm::tournamentSelection()
 	for (int i = 0; i < selected.size(); i += 2)
 	{
 		int crossOverIndex = crossover_distribution(generator);
-		int mutationIndex = crossover_distribution(generator);
-		
+		int fmutationIndex = crossover_distribution(generator);
+		int smutationIndex = crossover_distribution(generator);
+
+		// both parents mutate and have an offspring crossover
+		// release mode asks for child instance.. ?
 		Cromozome child = selected[i]->crossOver(*selected[i + 1], crossOverIndex);
-		// both parents mutate and have an offspring
+
 		newPopulation.push_back(child);
-		newPopulation.push_back(selected[i]->getMutatedChild(mutationIndex));
-		newPopulation.push_back(selected[i + 1]->getMutatedChild(mutationIndex));
+		newPopulation.push_back(selected[i]->getMutatedChild(fmutationIndex));
+		newPopulation.push_back(selected[i + 1]->getMutatedChild(smutationIndex));
 	}
 
-	for (std::set<int>::reverse_iterator it = std::rbegin(selected_indexes); it != std::rend(selected_indexes); it++)
+	for (std::set<int>::reverse_iterator it = std::rbegin(champions); it != std::rend(champions); it++)
 	{
 		fitness.erase(std::begin(fitness) + (*it));
 	}
 
-	// select best two candidates and remove them from candidate list
-	for (auto it = std::begin(fitness); it != std::end(fitness) - selected.size() * 2; it++)
+	//add top fitness candidates except the bottom
+	for (auto it = std::begin(fitness); it != std::end(fitness) - 3 * selected.size() / 2; it++)
 	{
 		newPopulation.push_back(population[(*it).first]);
 	}
 
+	population = newPopulation;
 }
 
 void GeneticAlgorithm::start()
 {
 	initPopulation();
 	computeFitness();
-	tournamentSelection();
-	computeFitness();
+	int iterations = 50;
+	for (int i = 0; i < iterations; i++)
+	{
+		tournamentSelection(); // selection -> crossover -> mutation
+		computeFitness();
+		std::cout << "Generation " << i << " best  time: " <<
+			fitness[0].second << " ||| " <<
+			population[fitness[0].first].toVec4().x << " " <<
+			population[fitness[0].first].toVec4().y << " " <<
+			population[fitness[0].first].toVec4().z << " " <<
+			population[fitness[0].first].toVec4().w << "\n";
+	}
+	printPop();
+	visualizePopulation();
+	visualizeIndividual(0);
 }
