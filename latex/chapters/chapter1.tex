@@ -1,6 +1,11 @@
-\chapter{Chapter 1}
+\chapter{Related Work}
 
-intro
-\section{Section 1}
- 
-section 
+In prezent, exista mai multi algoritmi genetici ce sunt devoltati pentru a perfectiona o actiune fizica sau pentru a optimiza probleme prin selectie naturala. 
+\section{Locomotie prin algoritmi evolutivi}
+
+Urmatorul articol \footnote{\url{https://www.cs.ubc.ca/~van/papers/2013-TOG-MuscleBasedBipeds/2013-TOG-MuscleBasedBipeds.pdf}} ce a simulat locomotia (\url{https://www.cs.ubc.ca/~van/papers/2013-TOG-MuscleBasedBipeds/2013-TOG-MuscleBasedBipeds.pdf}) prezinta un algoritm evolutiv ce foloseste CMA-ES \footnote{\url{https://en.wikipedia.org/wiki/CMA-ES}} (\textit{covariance matrix adaptation evolution strategy}) cu o populatie $\lambda = 20$ si step-size $\sigma = 1$. Modul in care au optimizat problema a fost de a minimiza eroarea $E(K)$:\begin{center} $E(K) = E_{speed} + E_{headori}+ E_{headvel}+ E_{slide}+ E_{effort}$ \end{center}.
+
+
+Acestia reusesc sa optimizeze un set de muschi si incheieturi 3D pentru a obtine invdivizi finali, care pot ajunge la o viteza dorita, fac fata unui teren inegal si a evenimentelor externe.
+
+Un alt algoritm genetic care evolueaza o miscare este prezentat la \url{https://rednuht.org/genetic_walkers/}. Spre deosebire de abordarea anterioara acest algoritm evolueaza distanta dintre \textit{head} fata de \textit{feet}, distanta pe care fiecare individ reuseste sa o parcurga si 100 de puncte in fitness pentru fiecare pas corect realizat.

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.6.14)  17 JUN 2019 17:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.6.14)  24 JUN 2019 00:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Bean/Documents/degree/latex/main.tex
-(c:/Users/Bean/Documents/degree/latex/main.tex
+**e:/uni/licenta/latex/main.tex
+(e:/uni/licenta/latex/main.tex
 LaTeX2e <2018-12-01>
 (e:/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
@@ -189,7 +189,7 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
 \Hy@SectionHShift=\skip43
-) (c:/Users/Bean/Documents/degree/latex/main.aux)
+) (e:/uni/licenta/latex/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
@@ -283,11 +283,11 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 29.
 LaTeX Info: Redefining \pageref on input line 29.
 LaTeX Info: Redefining \nameref on input line 29.
- (c:/Users/Bean/Documents/degree/latex/main.out) (c:/Users/Bean/Documents/degree/latex/main.out)
+ (e:/uni/licenta/latex/main.out) (e:/uni/licenta/latex/main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
- (c:/Users/Bean/Documents/degree/latex/front/macros.tex) (c:/Users/Bean/Documents/degree/latex/front/cover.tex
+ (e:/uni/licenta/latex/front/macros.tex) (e:/uni/licenta/latex/front/cover.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -307,14 +307,14 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 36.
  [1
 
-{e:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <c:/Users/Bean/Documents/degree/latex/images/logoFii.png>]) (c:/Users/Bean/Documents/degree/latex/front/titlepage.tex
+{e:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <e:/uni/licenta/latex/images/logoFii.png>]) (e:/uni/licenta/latex/front/titlepage.tex
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <24.88> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 14.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.35 \end{titlepage}
-                     [1]) (c:/Users/Bean/Documents/degree/latex/front/declaration1.tex
+                     [1]) (e:/uni/licenta/latex/front/declaration1.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 5.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -333,60 +333,76 @@ LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <12> not available
 <to be read again> 
                    \relax 
 l.39     \input
-               {front/declaration2} [1] (c:/Users/Bean/Documents/degree/latex/front/declaration2.tex
+               {front/declaration2} [1] (e:/uni/licenta/latex/front/declaration2.tex
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 4.
 )pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.40 
-      [2] (c:/Users/Bean/Documents/degree/latex/main.toc
+      [2] (e:/uni/licenta/latex/main.toc
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 2.
 )
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
- (c:/Users/Bean/Documents/degree/latex/chapters/motivation.tex [1
+ (e:/uni/licenta/latex/chapters/motivation.tex [1
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <24.88> on input line 1.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <20.74> on input line 1.
-) (c:/Users/Bean/Documents/degree/latex/chapters/introduction.tex [2
+) (e:/uni/licenta/latex/chapters/introduction.tex [2
 
-]) (c:/Users/Bean/Documents/degree/latex/chapters/chapter1.tex [3
+]) (e:/uni/licenta/latex/chapters/chapter1.tex [3
 
 ]
 Capitolul 1.
-) (c:/Users/Bean/Documents/degree/latex/chapters/chapter2.tex [4
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 6.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 6.
+(e:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 6--6
+[][][][]$\OT1/pcr/m/n/10 https : / / www . cs . ubc . ca / []van / papers / 2013-[]TOG-[]MuscleBasedBipeds /
+ []
+
+
+Overfull \hbox (11.55165pt too wide) in paragraph at lines 6--6
+\OT1/pcr/m/n/12 papers / 2013-[]TOG-[]MuscleBasedBipeds / 2013-[]TOG-[]MuscleBasedBipeds . pdf$[]\OT1/ppl/m/n/12 )
+ []
+
+) (e:/uni/licenta/latex/chapters/chapter2.tex [4
 
 ]
 Capitolul 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 7.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 7.
-(e:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [5
+[5
 
-]) (c:/Users/Bean/Documents/degree/latex/chapters/chapter3.tex [6]
+]
+<images/math-library-example.png, id=188, 554.07pt x 117.43875pt>
+File: images/math-library-example.png Graphic file (type png)
+<use images/math-library-example.png>
+Package pdftex.def Info: images/math-library-example.png  used on input line 27.
+(pdftex.def)             Requested size: 455.24411pt x 96.49213pt.
+) (e:/uni/licenta/latex/chapters/chapter3.tex [6 <e:/uni/licenta/latex/images/math-library-example.png>] [7]
 Capitolul 3.
-<images/envrules.png, id=188, 236.38312pt x 51.19125pt>
+<images/envrules.png, id=210, 236.38312pt x 51.19125pt>
 File: images/envrules.png Graphic file (type png)
 <use images/envrules.png>
 Package pdftex.def Info: images/envrules.png  used on input line 11.
 (pdftex.def)             Requested size: 136.57462pt x 29.57689pt.
-<images/simple_triangle.png, id=189, 394.47375pt x 365.11406pt>
+<images/simple_triangle.png, id=211, 394.47375pt x 365.11406pt>
 File: images/simple_triangle.png Graphic file (type png)
 <use images/simple_triangle.png>
 Package pdftex.def Info: images/simple_triangle.png  used on input line 19.
 (pdftex.def)             Requested size: 136.57462pt x 126.41017pt.
-[7
+[8
 
- <c:/Users/Bean/Documents/degree/latex/images/envrules.png> <c:/Users/Bean/Documents/degree/latex/images/simple_triangle.png>]
-<images/simple_triangle_txt.png, id=199, 220.57407pt x 135.50626pt>
+ <e:/uni/licenta/latex/images/envrules.png> <e:/uni/licenta/latex/images/simple_triangle.png>]
+<images/simple_triangle_txt.png, id=220, 220.57407pt x 135.50626pt>
 File: images/simple_triangle_txt.png Graphic file (type png)
 <use images/simple_triangle_txt.png>
 Package pdftex.def Info: images/simple_triangle_txt.png  used on input line 44.
@@ -395,38 +411,43 @@ File: images/simple_triangle.png Graphic file (type png)
 <use images/simple_triangle.png>
 Package pdftex.def Info: images/simple_triangle.png  used on input line 46.
 (pdftex.def)             Requested size: 136.57462pt x 126.41017pt.
- [8 <c:/Users/Bean/Documents/degree/latex/images/simple_triangle_txt.png>]) (c:/Users/Bean/Documents/degree/latex/chapters/chapter4.tex [9]
+ [9 <e:/uni/licenta/latex/images/simple_triangle_txt.png>]) (e:/uni/licenta/latex/chapters/chapter4.tex [10]
 Capitolul 4.
-) (c:/Users/Bean/Documents/degree/latex/chapters/conclusions.tex [10
+) (e:/uni/licenta/latex/chapters/conclusions.tex [11
 
-]) (c:/Users/Bean/Documents/degree/latex/chapters/bibliography.tex [11
+]) (e:/uni/licenta/latex/chapters/bibliography.tex [12
 
-])
+]
+Overfull \hbox (227.35524pt too wide) in paragraph at lines 7--8
+[]\OT1/ppl/m/n/12 Flexible Muscle-Based Lo-co-mo-tion for Bi-pe-dal Cre-a-tu-res []$\OT1/pcr/m/n/12 FlexibleMuscle-[]BasedLocomotionforBipedalCreatures$[] 
+ []
+
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
- [12
+ [13
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
- (c:/Users/Bean/Documents/degree/latex/main.aux)
+ (e:/uni/licenta/latex/main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DA5434BE1E104DBEE60258B8FE40B5EB;2272.
+(rerunfilecheck)             Checksum: 1AC4A68E5D5678C25B28526041C410EE;2418.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 9698 strings out of 492609
- 137174 string characters out of 6132818
+ 9709 strings out of 492609
+ 136707 string characters out of 6132818
  223475 words of memory out of 5000000
- 13442 multiletter control sequences out of 15000+600000
- 26552 words of font info for 69 fonts, out of 8000000 for 9000
+ 13446 multiletter control sequences out of 15000+600000
+ 27617 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,8n,31p,371b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
-{e:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on c:/Users/Bean/Documents/degree/latex/main.pdf (16 pages, 160997 bytes).
+ 28i,8n,31p,776b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
+{e:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on e:/uni/licenta/latex/main.pdf (17 pages, 197076 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 226 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 291 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
