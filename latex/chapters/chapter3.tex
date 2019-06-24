@@ -1,57 +1,70 @@
-\chapter{Configurare}
+\chapter{Mediul Fizic}
+Algoritmul genetic isi va optimiza problema in functie de mediul fizic oferit. Asta inseamna ca putem simula orice conditii fizice atat timp cat le putem reproduce. In cazul curent a fost simulat un mediu terestru cu $g = 9.8 m/s$. Mediul fizic incearca sa aproximeze fenomene fizice naturale folosind formule matematice.
 
-Pentru a putea fi folosit in cat mai multe moduri, motorul fizic poate fi setat sa ruleze in moduri diferite, iar obiectele sale pot avea mai multe proprietati, descrise mai jos.
+\section{Integrarea ecuatiilor miscarii dupa dt}
 
-\section{Variables}
+Stiind ca $F=ma$ atunci putem scoate acceleratia unui obiect in functie de masa acestuia: $a = F/m$. Daca integram dupa timp atunci $dv/dt = a$ dar nu uitam ca $a=F/m$ deci putem spune ca viteza unui obiect va fi rata de schimbare a pozitiei acestuia in functie de timp $dx/dt = v$.
 
-Variabilele ce pot fi schimbate sunt de 2 tipuri:
-\begin{itemize}
-    \item variabile de sistem, in fisierul $envrules.h$
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{envrules.png}
-    \end{center}
-    unde $DT$ reprezinta timpul per frame, $gravForce$ forta gravitationala si $PI$
-    \item variabile ale obiectelor
-    \begin{itemize}
-        \item[-] $gravInvul$, atunci gravitatia nu mai este aplicata obiectelor
-        \item[-] $showDirection$
-        \begin{center}
-        \includegraphics[width=0.3\textwidth]{simple_triangle.png}
-        \end{center}
-        In cazul in care $showDirection$ este $true$ atunci obiectul va avea 3 axe 
-        \begin{itemize}
-            \item $Red-Y$
-            \item $Green-Z$
-            \item $Blue-X$
-        \end{itemize} ce reprezenta orientarea obiectului, in caz contrar acestea nu vor aparea.
-    \end{itemize}
-\end{itemize}
-
-
-\section{Objects}
-
- Un obiect fizic este un obiect derivat in $oglVertexObject$ si poate exista in simulator doar daca are un fisier txt in care se regasesc proprietatile si regulile urmatoare:
-\begin{itemize}
-    \item rotatii dupa o axa oarecare intre $DT1$ si $DT2$ unde $DT2>DT1$. ($DT$\footnote{Delta time, timp scurs de inceperea executiei.})
-    \item pozitia x,y,z in world space
-    \item factor de elasticitate 
-    \item un array de puncte ce reprezinta fiecare varf, aflate oriunde in object space \footnote{puncte in referinta fata de C(0,0,0) unde va fi centrul obiectului.}.
-    \item un array de culori ce sunt asignate fiecarui punct
-\end{itemize}
-
-De exemplu, pentru urmatorul fisier txt apare un singur triunghi:
+Punand tot cap la cap obtinem:
 \begin{center}
-\includegraphics[width=0.3\textwidth]{simple_triangle_txt.png}
-
-\includegraphics[width=0.3\textwidth]{simple_triangle.png}
+    $a = F / m$\linebreak
+    $dv = a * dt$\linebreak
+    $dx = dv * dt$\linebreak
 \end{center}
 
-Conform fisierului txt, acesta are 0 rotatii, este plasat in punctul $C(3,3,0)$ in world space, are o elasticitate 0, iar varfurile sale reprezinta un triunghi unde varful $V(0,0,1)$ va avea culoarea $RGB(0,0,0)$.
+Deci daca vrem sa obtinem pozitia unui obiect dupa un anumit $dt$ vom calcula in urmatorul mod:
+\begin{center}
+    $a = F / m$\linebreak
+    $v = v + a * dt$\linebreak
+    $pos = pos + v * dt$\linebreak
+\end{center}
 
-\section{Head}
- 
-section 
+Acesta este modul de integrare Semi-Implicit Euler.
 
-\section{Headless}
- 
-section 
+\subsection{Moduri de integrare}
+Exista mai multe moduri te integrare, cel prezentat mai sus este Semi-Implicit Euler.
+
+Explicit euler integreaza pozitia inaintea vitezei si anume: 
+\begin{center}
+    $dx = dv * dt$\linebreak
+    $a = F / m$\linebreak
+    $dv = a * dt$\linebreak
+\end{center}
+
+Astfel apare o eroare in integrarea vitezei, iar aceasta depinde de timp. De exemplu aplicam o forta $F= 10N$ asupra unui corp de masa m, $m = 1kg$ timp de 10 secunde ($t = 10s$). Folosind formula miscarii uniforme $x = x_{0} + v_{0}t + \frac{at^{2}}{2}$ atunci $x = 500$, deci conform formulei, corpul se va misca 500 de unitati. Rezultatele integratorilor difera si anume:
+
+Eroarea integratorului Explicit Euler creste in functie de $dt$ ales. Pentru $dt = 1.0$:
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{explicit_euler_dt1.png}
+\end{center}
+La fel si pentru Semi-Implicit Euler
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{semi-implicit_euler_dt1.png}
+\end{center}
+
+Se observa ca ambele integratoarea au acelasi grad de eroare, dar Semi-Implicit euler are o eroare in fata, comparat cu rezultatul cautat $x=500$ in timp ce Explicit-Euler este in urma. Eroare ambelor integratoare scade in functie de $dt$, si anume pentru $dt=0.5$ si $dt=0.016$ (timpul unui frame pentru on monitor cu o rata de reimprospatare de 60\textit{Hz}):
+\begin{center}
+    \textbf{Explicit Euler, dt=0.5 \& dt = 0.016}\linebreak
+    \includegraphics[width=0.3\textwidth]{explicit_euler_dt05.png}
+    \includegraphics[width=0.545\textwidth]{explicit_euler_dt0016.png}
+\end{center}
+\begin{center}
+    \textbf{Semi-Implicit Euler, dt=0.5 \& dt = 0.016}\linebreak
+    \includegraphics[width=0.3\textwidth]{semi-implicit_euler_dt05.png}
+    \includegraphics[width=0.545\textwidth]{semi-implicit_euler_dt0016.png}
+\end{center}
+
+Pentru $dt=0.016$ integratorul Semi-Implicit Euler obtine o eroare $\epsilon = 0.79$ iar integratorul Explicit Euler $\epsilon = 0.81$, deci Semi-Implicit Euler este mai bun cu $\epsilon = 0.02$ fara nici un cost suplimentar din punct de vedere al timpului de calcul sau a memoriei folosite.
+\section{Rigid Bodies}
+Un corp rigid este un corp ce nu sufera deformatii in niciul fel. In cadrul algoritmului genetic si a mediului fizic, orice obiect este considerat un corp rigid cu un anumit factor de elasticitate $\sigma \in [0,0.7]$. Avand in considerare scopul curent al algoritmului genetic, au fost alese cuburi cu $l = 1$. 
+
+\section{Coliziuni}
+
+Din moment ce calcularea fitnessului are loc in mediul fizic, este nevoie ca simularea sa se efectueze cat mai repede, astfel se va recurge la verificarea coliziunii in 2 faze.
+\subsection{Sphere Bounding}
+Primul pas in detectarea unei coliziuni va fi compararea intre 2 sfere $S1,S2$ ce se realizeaza in mod rapid:
+\begin{center}
+\textit{if} $d(C_{S1},C_{S2}) > max(r_{S1},r_{S2})$ \textit{further checks... else false}
+\end{center}
+
+Fiecare obiect va fi invelit intr-o sfera de raza $r = l$, unde $l = d_{max}((0,0),v), v \in Vertexes$.
