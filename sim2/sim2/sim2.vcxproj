@@ -165,7 +165,6 @@
   <ItemGroup>
     <ClInclude Include="src\AGENV.h" />
     <ClInclude Include="src\Camera.h" />
-    <ClInclude Include="src\Colissions.h" />
     <ClInclude Include="src\Cromozome.h" />
     <ClInclude Include="src\GeneticAlgorithm.h" />
     <ClInclude Include="src\Part.h" />

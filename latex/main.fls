@@ -224,6 +224,12 @@ INPUT e:/uni/licenta/latex/images/semi-implicit_euler_dt05.png
 INPUT e:/uni/licenta/latex/images/semi-implicit_euler_dt0016.png
 INPUT e:/uni/licenta/latex/images/semi-implicit_euler_dt0016.png
 INPUT e:/uni/licenta/latex/images/semi-implicit_euler_dt0016.png
+INPUT e:/uni/licenta/latex/images/sphere_colission.png
+INPUT e:/uni/licenta/latex/images/sphere_colission.png
+INPUT e:/uni/licenta/latex/images/sphere_colission.png
+INPUT e:/uni/licenta/latex/images/colission_model.png
+INPUT e:/uni/licenta/latex/images/colission_model.png
+INPUT e:/uni/licenta/latex/images/colission_model.png
 INPUT e:/uni/licenta/latex/chapters/chapter4.tex
 INPUT e:/uni/licenta/latex/chapters/chapter4.tex
 INPUT e:/uni/licenta/latex/chapters/chapter5.tex
@@ -239,6 +245,7 @@ INPUT e:/uni/licenta/latex/main.aux
 INPUT e:/uni/licenta/latex/main.out
 INPUT e:/uni/licenta/latex/main.out
 INPUT e:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb

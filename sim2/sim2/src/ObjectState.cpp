@@ -1,6 +1,6 @@
 #include "ObjectState.h"
 #include "Logger.h"
-#include "Colissions.h"
+#include "Colissions/Colissions.h"
 
 ObjectState::ObjectState()
 {
@@ -71,7 +71,7 @@ bool ObjectState::collide(ObjectState& state2, std::vector<glm::vec3> v1, std::v
 	float dz = s1_position.z - s2_position.z;
 	float d = sqrt(dx * dx + dy * dy + dz * dz);
 
-	if (d < std::fmax(radius, state2.radius))
+	if (d < radius + state2.radius)
 	{
 		bool status = false;
 		for (int i = 0; i < v1.size(); i += 3)

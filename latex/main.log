@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.6.14)  24 JUN 2019 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.6.14)  25 JUN 2019 16:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -294,7 +294,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 6.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <20.74> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 9.
-<images/logoFii.png, id=124, 193.47281pt x 188.95593pt>
+<images/logoFii.png, id=136, 193.47281pt x 188.95593pt>
 File: images/logoFii.png Graphic file (type png)
 <use images/logoFii.png>
 Package pdftex.def Info: images/logoFii.png  used on input line 13.
@@ -346,7 +346,7 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6> not available
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 ...\numberline {4.2}Fitness}{15}{section.4.2}
+l.26 ...line {4}Algoritmul Genetic}{16}{chapter.4}
                                                   % [3
 
 ])
@@ -370,7 +370,7 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 7.
 (e:/texlive/2019/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<images/cellular_evolution.png, id=198, 871.00406pt x 264.23718pt>
+<images/cellular_evolution.png, id=213, 871.00406pt x 264.23718pt>
 File: images/cellular_evolution.png Graphic file (type png)
 <use images/cellular_evolution.png>
 Package pdftex.def Info: images/cellular_evolution.png  used on input line 14.
@@ -385,7 +385,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--22
  []
 
 [5 <e:/uni/licenta/latex/images/cellular_evolution.png>] [6]
-<images/evolved_antenna.png, id=242, 536.0025pt x 244.66406pt>
+<images/evolved_antenna.png, id=257, 536.0025pt x 244.66406pt>
 File: images/evolved_antenna.png Graphic file (type png)
 <use images/evolved_antenna.png>
 Package pdftex.def Info: images/evolved_antenna.png  used on input line 40.
@@ -395,7 +395,7 @@ Capitolul 2.
 [8
 
 ]
-<images/math-library-example.png, id=270, 554.07pt x 117.43875pt>
+<images/math-library-example.png, id=285, 554.07pt x 117.43875pt>
 File: images/math-library-example.png Graphic file (type png)
 <use images/math-library-example.png>
 Package pdftex.def Info: images/math-library-example.png  used on input line 27.
@@ -405,46 +405,57 @@ Capitolul 3.
 [11
 
 ]
-<images/explicit_euler_dt1.png, id=297, 164.86594pt x 130.98938pt>
+<images/explicit_euler_dt1.png, id=312, 164.86594pt x 130.98938pt>
 File: images/explicit_euler_dt1.png Graphic file (type png)
 <use images/explicit_euler_dt1.png>
 Package pdftex.def Info: images/explicit_euler_dt1.png  used on input line 38.
 (pdftex.def)             Requested size: 136.57462pt x 108.51527pt.
-<images/semi-implicit_euler_dt1.png, id=298, 154.32657pt x 130.23656pt>
+<images/semi-implicit_euler_dt1.png, id=313, 154.32657pt x 130.23656pt>
 File: images/semi-implicit_euler_dt1.png Graphic file (type png)
 <use images/semi-implicit_euler_dt1.png>
 Package pdftex.def Info: images/semi-implicit_euler_dt1.png  used on input line 42.
 (pdftex.def)             Requested size: 136.57462pt x 115.26431pt.
-<images/explicit_euler_dt05.png, id=299, 161.85469pt x 127.22531pt>
+<images/explicit_euler_dt05.png, id=314, 161.85469pt x 127.22531pt>
 File: images/explicit_euler_dt05.png Graphic file (type png)
 <use images/explicit_euler_dt05.png>
 Package pdftex.def Info: images/explicit_euler_dt05.png  used on input line 48.
 (pdftex.def)             Requested size: 136.57462pt x 107.35966pt.
-<images/explicit_euler_dt0016.png, id=300, 298.11375pt x 129.48375pt>
+<images/explicit_euler_dt0016.png, id=315, 298.11375pt x 129.48375pt>
 File: images/explicit_euler_dt0016.png Graphic file (type png)
 <use images/explicit_euler_dt0016.png>
 Package pdftex.def Info: images/explicit_euler_dt0016.png  used on input line 49.
 (pdftex.def)             Requested size: 248.1072pt x 107.76387pt.
  [12 <e:/uni/licenta/latex/images/explicit_euler_dt1.png> <e:/uni/licenta/latex/images/semi-implicit_euler_dt1.png>]
-<images/semi-implicit_euler_dt05.png, id=308, 161.10187pt x 129.48375pt>
+<images/semi-implicit_euler_dt05.png, id=323, 161.10187pt x 129.48375pt>
 File: images/semi-implicit_euler_dt05.png Graphic file (type png)
 <use images/semi-implicit_euler_dt05.png>
 Package pdftex.def Info: images/semi-implicit_euler_dt05.png  used on input line 53.
 (pdftex.def)             Requested size: 136.57462pt x 109.77519pt.
-<images/semi-implicit_euler_dt0016.png, id=309, 294.34969pt x 130.98938pt>
+<images/semi-implicit_euler_dt0016.png, id=324, 294.34969pt x 130.98938pt>
 File: images/semi-implicit_euler_dt0016.png Graphic file (type png)
 <use images/semi-implicit_euler_dt0016.png>
 Package pdftex.def Info: images/semi-implicit_euler_dt0016.png  used on input line 54.
 (pdftex.def)             Requested size: 248.1072pt x 110.41206pt.
- [13 <e:/uni/licenta/latex/images/explicit_euler_dt05.png> <e:/uni/licenta/latex/images/explicit_euler_dt0016.png> <e:/uni/licenta/latex/images/semi-implicit_euler_dt05.png> <e:/uni/licenta/latex/images/semi-implicit_euler_dt0016.png>]) (e:/uni/licenta/latex/chapters/chapter4.tex [14]
+ [13 <e:/uni/licenta/latex/images/explicit_euler_dt05.png> <e:/uni/licenta/latex/images/explicit_euler_dt0016.png> <e:/uni/licenta/latex/images/semi-implicit_euler_dt05.png> <e:/uni/licenta/latex/images/semi-implicit_euler_dt0016.png>]
+<images/sphere_colission.png, id=333, 382.42876pt x 251.43938pt>
+File: images/sphere_colission.png Graphic file (type png)
+<use images/sphere_colission.png>
+Package pdftex.def Info: images/sphere_colission.png  used on input line 79.
+(pdftex.def)             Requested size: 227.62206pt x 149.65623pt.
+<images/colission_model.png, id=336, 433.62pt x 254.45062pt>
+File: images/colission_model.png Graphic file (type png)
+<use images/colission_model.png>
+Package pdftex.def Info: images/colission_model.png  used on input line 93.
+(pdftex.def)             Requested size: 227.62206pt x 133.56915pt.
+ [14 <e:/uni/licenta/latex/images/sphere_colission.png>]) (e:/uni/licenta/latex/chapters/chapter4.tex [15 <e:/uni/licenta/latex/images/colission_model.png>]
 Capitolul 4.
-) (e:/uni/licenta/latex/chapters/chapter5.tex [15
+[16
 
-]
+] [17]) (e:/uni/licenta/latex/chapters/chapter5.tex [18]
 Capitolul 5.
-) (e:/uni/licenta/latex/chapters/conclusions.tex [16
+) (e:/uni/licenta/latex/chapters/conclusions.tex [19
 
-]) (e:/uni/licenta/latex/chapters/bibliography.tex [17
+]) (e:/uni/licenta/latex/chapters/bibliography.tex [20
 
 ]
 Overfull \hbox (6.3814pt too wide) in paragraph at lines 5--6
@@ -486,32 +497,47 @@ Overfull \hbox (65.68457pt too wide) in paragraph at lines 14--15
 []\OT1/ppl/m/n/12 Glenn Fi-e-d-ler. \OT1/ppl/b/n/12 Fix Your Ti-mes-tep! []$\OT1/pcr/m/n/12 https : / / web . archive . org / web / 20190403012130 /
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
- [18
+
+Overfull \hbox (24.95592pt too wide) in paragraph at lines 15--16
+[]\OT1/ppl/m/n/12 Glenn Fi-e-d-ler. \OT1/ppl/b/n/12 Co-l-li-sion Res-ponse and Co-u-lomb Fric-tion []$\OT1/pcr/m/n/12 https : / / web . archive .
+ []
+
+
+Overfull \hbox (34.93039pt too wide) in paragraph at lines 15--16
+\OT1/pcr/m/n/12 org / web / 20181107181448 / https : / / gafferongames . com / post / collision _
+ []
+
+[21
 
 ]
+Overfull \hbox (20.57526pt too wide) in paragraph at lines 16--17
+[]\OT1/ppl/m/n/12 Tomas Mo-l-ler. \OT1/ppl/b/n/12 A Fast Triangle-Triangle In-ter-sec-tion Test []$\OT1/pcr/m/n/12 http : / / web . stanford .
+ []
+
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
+ [22]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
  (e:/uni/licenta/latex/main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 59.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 59.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B083D056ED81B0A4E60A94A6231FD51B;3748.
+(rerunfilecheck)             Checksum: 657CD677170190D5FFF9B1FCE48257B4;4374.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 9770 strings out of 492609
- 138163 string characters out of 6132818
+ 9791 strings out of 492609
+ 138574 string characters out of 6132818
  224475 words of memory out of 5000000
- 13479 multiletter control sequences out of 15000+600000
+ 13490 multiletter control sequences out of 15000+600000
  28234 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,8n,31p,815b,436s stack positions out of 5000i,500n,10000p,200000b,80000s
-{e:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on e:/uni/licenta/latex/main.pdf (23 pages, 655015 bytes).
+ 28i,9n,31p,815b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
+{e:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><e:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><e:/texlive/2019/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on e:/uni/licenta/latex/main.pdf (27 pages, 683711 bytes).
 PDF statistics:
- 412 PDF objects out of 1000 (max. 8388607)
- 352 compressed objects within 4 object streams
- 69 named destinations out of 1000 (max. 500000)
- 291 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 462 PDF objects out of 1000 (max. 8388607)
+ 393 compressed objects within 4 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 325 words of extra memory for PDF output out of 10000 (max. 10000000)
 

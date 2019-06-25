@@ -53,12 +53,17 @@ void Cromozome::setCromozome(std::bitset<6> x, std::bitset<6> y, std::bitset<6> 
 	eGenes = e;
 }
 
+std::string Cromozome::cromozomeToString()
+{
+	return xGenes.to_string() + yGenes.to_string() + zGenes.to_string() + eGenes.to_string();
+}
+
 glm::vec4 Cromozome::toVec4()
 {
 	glm::vec4 res;
 	res.x = xGenes.to_ulong();
 	res.y = yGenes.to_ulong();
-	res.z = zGenes.to_ulong();
+	res.z = zGenes.to_ulong() - 63 / 2;
 	res.w = eGenes.to_ulong();
 	return res;
 }

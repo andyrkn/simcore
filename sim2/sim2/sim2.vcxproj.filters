@@ -101,9 +101,6 @@
     <ClInclude Include="src\Part.h">
       <Filter>Header Files\SIMULATOR\SimulatorObjects</Filter>
     </ClInclude>
-    <ClInclude Include="src\Colissions.h">
-      <Filter>Header Files\SIMULATOR\System\ObjectLogic</Filter>
-    </ClInclude>
     <ClInclude Include="src\RotationRule.h">
       <Filter>Header Files\SIMULATOR\System\ObjectLogic</Filter>
     </ClInclude>

@@ -61,10 +61,46 @@ Un corp rigid este un corp ce nu sufera deformatii in niciul fel. In cadrul algo
 \section{Coliziuni}
 
 Din moment ce calcularea fitnessului are loc in mediul fizic, este nevoie ca simularea sa se efectueze cat mai repede, astfel se va recurge la verificarea coliziunii in 2 faze.
-\subsection{Sphere Bounding}
+\subsection{Intersectie intre doua sfere}
 Primul pas in detectarea unei coliziuni va fi compararea intre 2 sfere $S1,S2$ ce se realizeaza in mod rapid:
+
 \begin{center}
-\textit{if} $d(C_{S1},C_{S2}) > max(r_{S1},r_{S2})$ \textit{further checks... else false}
+\textit{if} $d(C_{S1},C_{S2}) < (r_{S1}+r_{S2})$ \textit{then further checks... else false}
 \end{center}
 
-Fiecare obiect va fi invelit intr-o sfera de raza $r = l$, unde $l = d_{max}((0,0),v), v \in Vertexes$.
+Fiecare obiect va fi invelit intr-o sfera de raza r:
+\begin{center}
+$r = d_{max}((0,0),v)$ unde $v \in Vertexes$. 
+\end{center}
+
+Astfel la fiecare frame, este necesar in prima faza doar o verificare de coliziune intre sfere, fapt care salveaza mult timp.
+
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{sphere_colission.png} \linebreak
+    \textit{exemplu coliziune intre 2 sfere}
+\end{center}
+
+\subsection{Intersectie intre doua triunghiuri}
+Odata trecut cazul intersectiei intre doua sfere, pasul urmatorul este cautarea unui punct de intersectie intre triunghiurile obiectelor. Acest lucru se realizarea prin verificarea intersectiei dintre doua triunghiuri pentru toate perechile a cate doua triunghiuri dintre cele doua obiecte.
+
+Articolul \textbf{A Fast Triangle-Triangle Intersection Test} \footnote{\url{http://web.stanford.edu/class/cs277/resources/papers/Moller1997b.pdf}} prezinta un mod optimizat de a realiza testul de intersectie si a fost folosit in cadrul implementarii.
+
+\section{Efectul unei coliziuni}
+
+In cazul nostru, coliziunile au loc doar intre indivizi si corpuri imobile. Astfel s-a folosit un mod simplu de impuls linear.
+
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{colission_model.png}
+\end{center}
+
+Normala la contact $N$ se calculeaza din coordinatele varfurilor. Pentru un triunghi $T(p_{1},p_{2},p_{3})$ unde $p_{0},p_{1},p_{2}$ sunt varfurile de forma $p(x,y,z)$, atunci 
+\begin{center}
+    $N = (p_{1}-p_{0}) \times (p_{2}-p_{0})$
+\end{center}
+
+In functie de coeficientul de elasticitate $\mu$ al corpului, vectorul directie rezultat in urma coliziunii va fi intre $[r1,r2]$.
+\begin{itemize}
+    \item $\mu = 1$. Are loc o coliziune perfect elastica, fara pierdere de energie. Vectorul rezultat este r1. Acest caz a fost eliminat din algoritmul genetic.
+    \item $\mu \in [0.9,0)$. Are loc o coliziune inelastica, o parte din energia cinetica este pierduta. Vectorul rezultat va fi intre $[r1,r2]$.
+    \item $\mu = 0$. Are loc o coliziune perfect inelastica, obiectul va urma directia $r2$.
+\end{itemize}

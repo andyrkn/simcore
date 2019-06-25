@@ -99,8 +99,6 @@ void oglVertexObject::loadObjectData(const char* path)
 
 		if (type == "v")
 		{
-			float d = sqrt(x * x + y * y + z * z);
-			radius = std::fmax(radius, d);
 			centroid.x += x;
 			centroid.y += y;
 			centroid.z += z;
@@ -119,6 +117,8 @@ void oglVertexObject::loadObjectData(const char* path)
 	for (auto& vertice : vertices)
 	{
 		vertice = vertice - centroid;
+		float d = sqrt(vertice.x * vertice.x + vertice.y * vertice.y + vertice.z * vertice.z);
+		radius = std::fmax(radius, d);
 	}
 
 	frames = 0;

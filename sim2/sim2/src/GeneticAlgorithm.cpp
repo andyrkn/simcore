@@ -155,7 +155,7 @@ void GeneticAlgorithm::tournamentSelection()
 	std::vector<Cromozome*> selected;
 	std::vector<Cromozome> newPopulation;
 
-	int tournamentSize = selection_distribution(generator) * 2;
+	int tournamentSize = selection_distribution(generator) * 3;
 
 	// run tournaments and select top 2 candidates from each tournament
 	std::set<int> champions;
@@ -206,6 +206,21 @@ void GeneticAlgorithm::tournamentSelection()
 	//add top fitness candidates except the bottom
 	for (auto it = std::begin(fitness); it != std::end(fitness) - 3 * selected.size() / 2; it++)
 	{
+		/*
+		float chanceToMutate = ((float)probability_distribution(generator)) / 1000.0f;
+
+		if(chanceToMutate < 0.05)
+		{
+			//int mutationAmount = crossover_distribution(generator);
+			int mutationAmount = 3;
+
+			for (int mutations = 0; mutations < mutationAmount; mutations++); 
+			{
+				int mutationIndex = crossover_distribution(generator);
+				population[(*it).first].mutate(mutationIndex);
+			}
+		}
+		*/
 		newPopulation.push_back(population[(*it).first]);
 	}
 
@@ -216,7 +231,7 @@ void GeneticAlgorithm::start()
 {
 	initPopulation();
 	computeFitness();
-	int iterations = 50;
+	int iterations = 400;
 	for (int i = 0; i < iterations; i++)
 	{
 		tournamentSelection(); // selection -> crossover -> mutation

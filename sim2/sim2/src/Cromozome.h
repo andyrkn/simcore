@@ -23,6 +23,7 @@ public:
 
 	void setCromozome(long x, long y, long z, long e);
 	void setCromozome(std::bitset<6> x, std::bitset<6> y, std::bitset<6> z, std::bitset<3> e);
+	std::string cromozomeToString();
 
 	glm::vec4 toVec4();
 

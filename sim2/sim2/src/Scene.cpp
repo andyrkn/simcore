@@ -41,7 +41,7 @@ void Scene::updateObjects()
 				{
 					if (obj->state.collide(obj2->state, obj->vertices, obj2->vertices))
 					{
-						obj->state.position += obj->state.velocity * (DT*4);
+						obj->state.position += obj->state.velocity * (DT*2);
 
 						if (env.running) //  check if there's an active genetic environment
 						{
@@ -174,7 +174,7 @@ void Scene::initObjectsOpenGL()
  
 void Scene::loadObstacles()
 {
-	floor.push_back(Floor("objs/vertexObjects/top obstacle.txt", -4));
+	// floor.push_back(Floor("objs/vertexObjects/top obstacle.txt", -4));
 	floor.push_back(Floor("objs/vertexObjects/obstacle1.txt", -1));
 	floor.push_back(Floor("objs/vertexObjects/target.txt", -2));
 	floor.push_back(Floor("objs/vertexObjects/floor.txt", -3));
