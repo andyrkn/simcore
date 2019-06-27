@@ -27,11 +27,16 @@ public:
 
 	glm::vec4 toVec4();
 
-	Cromozome crossOver(Cromozome& y, short index);
+	Cromozome singlePointCrossOver(Cromozome& y, short index);
+	Cromozome twoPointCrossOver(Cromozome& y, short start, short end);
+
 	void mutate(short index);
 	Cromozome getMutatedChild(short index);
 
 private:
 	std::bitset<6> combine(std::bitset<6>& source,std::bitset<6> secondPart, short index);
+	std::bitset<3> combine(std::bitset<3>& source, std::bitset<3> secondPart, short index);
+	std::bitset<6> twoPointCombination(std::bitset<6>& source, std::bitset<6> secondPart, short start, short end);
+	std::bitset<6> &getBitsAtIndex(short index);
 };
 

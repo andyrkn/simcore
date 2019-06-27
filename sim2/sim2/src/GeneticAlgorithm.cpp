@@ -4,6 +4,8 @@
 #include <thread>
 #include <chrono>
 #include <set>
+#include <fstream>
+
 GeneticAlgorithm::GeneticAlgorithm(int popsize)
 {
 	this->popsize = popsize;
@@ -60,6 +62,27 @@ void GeneticAlgorithm::initPopulation()
 		long e = distribution_elasticity(generator) / 1000;
 
 		population.push_back(Cromozome(x, y, z, e));
+	}
+}
+
+void GeneticAlgorithm::mutation(int amount, float probability)
+{
+	int geneAmount = 21 * amount / 100;
+	std::mt19937 generator(std::chrono::system_clock::now().time_since_epoch().count());
+	std::uniform_int_distribution<int> probability_distribution(1, 1000);
+	std::uniform_int_distribution<int> mutation_distribution(0, 2100);
+
+	for (auto it = std::begin(population); it != std::end(population); it++)
+	{
+		float chanceToMutate = (float) probability_distribution(generator) / 1000;
+		if (chanceToMutate < probability)
+		{
+			for (int i = 0; i < geneAmount; i++) // mutate specific amount of genes
+			{
+				int mutatedGeneIndex = mutation_distribution(generator) / 1000;
+				(*it).mutate(mutatedGeneIndex);
+			}
+		}
 	}
 }
 
@@ -125,7 +148,6 @@ void GeneticAlgorithm::computeFitness()
 	// printPop();
 }
 
-
 void GeneticAlgorithm::printPop()
 {
 	for (auto it = std::begin(fitness); it != std::end(fitness); it++)
@@ -142,7 +164,7 @@ void GeneticAlgorithm::printPop()
 	std::cout << "\n--------------------\n";
 }
 
-void GeneticAlgorithm::tournamentSelection()
+void GeneticAlgorithm::tournamentSelection(bool tournamentMuation)
 {
 	float p = 0.7;
 	std::mt19937 generator(std::chrono::system_clock::now().time_since_epoch().count());
@@ -183,19 +205,26 @@ void GeneticAlgorithm::tournamentSelection()
 		newPopulation.push_back(population[fitness[*it].first]);
 	}
 
+	// breed the champions
 	for (int i = 0; i < selected.size(); i += 2)
 	{
-		int crossOverIndex = crossover_distribution(generator);
+		int crossOverIndex1 = crossover_distribution(generator);
+		int crossOverIndex2 = crossover_distribution(generator);
 		int fmutationIndex = crossover_distribution(generator);
 		int smutationIndex = crossover_distribution(generator);
 
-		// both parents mutate and have an offspring crossover
-		// release mode asks for child instance.. ?
-		Cromozome child = selected[i]->crossOver(*selected[i + 1], crossOverIndex);
+		// singlePointCrossover
+		Cromozome child = selected[i]->singlePointCrossOver(*selected[i + 1], crossOverIndex1);
+		// if (crossOverIndex1 > crossOverIndex2) { std::swap(crossOverIndex1, crossOverIndex2); }
+		// Cromozome child = selected[i]->twoPointCrossOver(*selected[i + 1], crossOverIndex1, crossOverIndex2);
 
 		newPopulation.push_back(child);
-		newPopulation.push_back(selected[i]->getMutatedChild(fmutationIndex));
-		newPopulation.push_back(selected[i + 1]->getMutatedChild(smutationIndex));
+
+		if (tournamentMuation)
+		{
+			newPopulation.push_back(selected[i]->getMutatedChild(fmutationIndex));
+			newPopulation.push_back(selected[i + 1]->getMutatedChild(smutationIndex));
+		}
 	}
 
 	for (std::set<int>::reverse_iterator it = std::rbegin(champions); it != std::rend(champions); it++)
@@ -204,26 +233,10 @@ void GeneticAlgorithm::tournamentSelection()
 	}
 
 	//add top fitness candidates except the bottom
-	for (auto it = std::begin(fitness); it != std::end(fitness) - 3 * selected.size() / 2; it++)
+	for (auto it = std::begin(fitness); newPopulation.size() < popsize; it++)
 	{
-		/*
-		float chanceToMutate = ((float)probability_distribution(generator)) / 1000.0f;
-
-		if(chanceToMutate < 0.05)
-		{
-			//int mutationAmount = crossover_distribution(generator);
-			int mutationAmount = 3;
-
-			for (int mutations = 0; mutations < mutationAmount; mutations++); 
-			{
-				int mutationIndex = crossover_distribution(generator);
-				population[(*it).first].mutate(mutationIndex);
-			}
-		}
-		*/
 		newPopulation.push_back(population[(*it).first]);
 	}
-
 	population = newPopulation;
 }
 
@@ -231,10 +244,24 @@ void GeneticAlgorithm::start()
 {
 	initPopulation();
 	computeFitness();
-	int iterations = 400;
+	bool tournamentMutation = false;
+	int iterations = 200;
+	int mutationPercent = 10;
+	float mutationProbability = 0.1;
+
+	std::string name =
+		"pop" + std::to_string(popsize) +
+		"iter" + std::to_string(iterations) +
+		"mutationPercent" + std::to_string(mutationPercent) +
+		"prob" + std::to_string(mutationProbability) + ".txt";
+
+	std::ofstream fout;
+	fout.open(name, std::ofstream::out);
+
 	for (int i = 0; i < iterations; i++)
 	{
-		tournamentSelection(); // selection -> crossover -> mutation
+		tournamentSelection(tournamentMutation); // true = champions mutate, false they dont
+		if(!tournamentMutation) mutation(mutationPercent, mutationProbability);
 		computeFitness();
 		std::cout << "Generation " << i << " best  time: " <<
 			fitness[0].second << " ||| " <<
@@ -242,8 +269,16 @@ void GeneticAlgorithm::start()
 			population[fitness[0].first].toVec4().y << " " <<
 			population[fitness[0].first].toVec4().z << " " <<
 			population[fitness[0].first].toVec4().w << "\n";
+		fout << fitness[0].second << " " <<
+			population[fitness[0].first].toVec4().x << " " <<
+			population[fitness[0].first].toVec4().y << " " <<
+			population[fitness[0].first].toVec4().z << " " <<
+			population[fitness[0].first].toVec4().w << "\n";
+
+		if (fitness[0].second < 10)break;
 	}
 	printPop();
+	fout.close();
 	visualizePopulation();
 	visualizeIndividual(0);
 }

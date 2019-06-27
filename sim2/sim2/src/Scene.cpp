@@ -175,7 +175,7 @@ void Scene::initObjectsOpenGL()
 void Scene::loadObstacles()
 {
 	// floor.push_back(Floor("objs/vertexObjects/top obstacle.txt", -4));
-	floor.push_back(Floor("objs/vertexObjects/obstacle1.txt", -1));
+	floor.push_back(Floor("objs/vertexObjects/obstacle2.txt", -1));
 	floor.push_back(Floor("objs/vertexObjects/target.txt", -2));
 	floor.push_back(Floor("objs/vertexObjects/floor.txt", -3));
 

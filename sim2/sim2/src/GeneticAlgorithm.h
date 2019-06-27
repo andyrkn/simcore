@@ -19,8 +19,12 @@ public:
 	void start();
 private:
 	void initPopulation();
-	void tournamentSelection();
+
+	void mutation(int amount,float probability);
+
+	void tournamentSelection(bool tournamentMuation);
 	void computeFitness();
+
 	void visualizePopulation();
 	void visualizeIndividual(int index);
 };

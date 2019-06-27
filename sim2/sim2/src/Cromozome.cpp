@@ -68,7 +68,7 @@ glm::vec4 Cromozome::toVec4()
 	return res;
 }
 
-Cromozome Cromozome::crossOver(Cromozome& y, short index)
+Cromozome Cromozome::singlePointCrossOver(Cromozome& y, short index)
 {
 	Cromozome res;
 	if (index < 6)
@@ -97,6 +97,40 @@ Cromozome Cromozome::crossOver(Cromozome& y, short index)
 	}
 }
 
+Cromozome Cromozome::twoPointCrossOver(Cromozome& y, short start, short end)
+{
+	std::bitset<6> xRes = xGenes;
+	std::bitset<6> yRes = yGenes;
+	std::bitset<6> zRes = zGenes;
+	std::bitset<3> eRes = eGenes;
+	
+	if (start < 6)
+	{
+		if (end < 6) xRes = twoPointCombination(xGenes, y.xGenes, start, end);
+		else if (end < 12) yRes = combine(yGenes, y.yGenes, end);
+		else if (end < 18) zRes = combine(zGenes, y.zGenes, end);
+		else if (end < 21) eRes = combine(eGenes, y.eGenes, end);
+	}
+	else if (start < 12)
+	{
+		if(end<12) yRes = twoPointCombination(yGenes, y.yGenes, start, end);
+		else if (end < 18) zRes = combine(zGenes, y.zGenes, end);
+		else if (end < 21) eRes = combine(eGenes, y.eGenes, end);
+	}
+	else if (start < 18)
+	{
+		if(end < 18) zRes = twoPointCombination(zGenes, y.zGenes, start, end);
+		else if (end < 21) eRes = combine(eGenes, y.eGenes, end);
+	}
+	else if (start < 21)
+	{
+		eRes = combine(eGenes, y.eGenes, end);
+		for (int i = end % 3; i < 3; i++) eRes[i] = eGenes[i];
+	}
+
+	return Cromozome(xRes, yRes, zRes, eRes);
+}
+
 void Cromozome::mutate(short index)
 {
 	if (index < 6)  xGenes.flip(index % 6);
@@ -118,5 +152,29 @@ std::bitset<6> Cromozome::combine(std::bitset<6>& source, std::bitset<6> secondP
 	for (int i = 0; i < index%6; i++) { res[i] = source[i]; }
 	for (int i = index%6; i < 6; i++) { res[i] = secondPart[i]; }
 	return res;
+}
+
+std::bitset<3> Cromozome::combine(std::bitset<3>& source, std::bitset<3> secondPart, short index)
+{
+	std::bitset<3> res;
+	for (int i = 0; i < index % 3; i++) { res[i] = source[i]; }
+	for (int i = index % 3; i < 3; i++) { res[i] = secondPart[i]; }
+	return res;
+}
+
+std::bitset<6> Cromozome::twoPointCombination(std::bitset<6>& source, std::bitset<6> secondPart, short start, short end)
+{
+	std::bitset<6> res;
+	for (int i = 0; i < start % 6; i++) { res[i] = source[i]; }
+	for (int i = start % 6; i < end % 6; i++) { res[i] = secondPart[i]; }
+	for (int i = end % 6; i < 6; i++) { res[i] = source[i]; }
+	return res;
+}
+
+std::bitset<6>& Cromozome::getBitsAtIndex(short index)
+{
+	if (index < 6) return xGenes;
+	if (index < 12) return yGenes;
+	if (index < 18) return zGenes;
 }
 

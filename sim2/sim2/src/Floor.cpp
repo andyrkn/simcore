@@ -34,4 +34,9 @@ void Floor::update()
 	}
 	if (!rotated)
 		state.checkOffCenterRotation();
+
+	if (id == -1)
+	{
+		state.position.y += 0.2;
+	}
 }
