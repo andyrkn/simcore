@@ -39,10 +39,10 @@ Pentru rularea cat mai rapida a testului, coliziunea dintre indivizi este dezact
  
 Modul de selectia utilizat a fost Tournament Selection.
 
-In fiecare generatie pot exista un total de $n$ tournamnets, $n \in [1,3]$. Pentru fiecare tournamnet se alege in mod uniform din populatie un individ ce nu a castigat deja un tournament anterior. In fiecare tournament pot exista maxim $3*n$ participanti, iar cei mai buni 2 indivizi din fiecare tournament sunt selectati pentru crossover,mutatie si sunt adaugati in generatia urmatoare. Pentru a crea noua populatie, sunt adaugati in ordinea fitnessului cromozomii din generatia precedenta pana cand $\lambda = 100$.
+In fiecare generatie pot exista un total de $n_{t}$ tournamnets, $n_{t} \in [1,3]$. Pentru fiecare tournamnet se alege in mod uniform din populatie un individ ce nu a castigat deja un tournament anterior. In fiecare tournament pot exista maxim $3*n_{t}$ participanti, iar cei mai buni 2 indivizi din fiecare tournament sunt selectati pentru crossover,mutatie si sunt adaugati in generatia urmatoare. Pentru a crea noua populatie, sunt adaugati in ordinea fitnessului cromozomii din generatia precedenta pana cand $\lambda = 100$.
 
 \section{Crossover}
-Crossover se realizeaza in mod classic intre doi parinti, dupa un indice complet random. Prima parte a primului parinte legata de a doua parte a partenerului.
+Crossover se realizeaza in mod classic intre doi parinti, dupa un indice $i_{1}$ complet random. Prima parte a primului parinte va fi legata de a doua parte a partenerului.
 
 Exemplu crossover intre un cromozom cu $\{F_{1}(10,15,0), \mu_{1} = 4\}$ si $\{F_{2}(33,11,5),$ \linebreak $\mu_{7} = 4\}$ la indicele $i=11$:
 \begin{center}
@@ -53,7 +53,16 @@ Exemplu crossover intre un cromozom cu $\{F_{1}(10,15,0), \mu_{1} = 4\}$ si $\{F
     $\underbrace{001010}_{10}$ $\underbrace{001111}_{15}$ $\underbrace{000101}_{5}$ $\underbrace{111}_{7}$ \linebreak \linebreak
 \end{center}
 
-Numarul de indivizi prezenti in populatia $i+1$ rezultati prin crossover este maxim $n$ unde $n$ este numarul de tournamente ce au avut loc in populatia $i$. Alta alternativa de crossover a fost Two-point Crossover. Tehnica Single point crossover a fost aleasa pentru a mentine stilul clasic de lucru al algoritmului genetric.
+In TwoPointCrossOver, se genereaza un al doilea indice $i_{2}$ care indica unde va fi introdus restul genomului primului parinte, genomul partenerului fiind plasat intre $i_{1}$ si $i_{2}$.
+
+Numarul de indivizi prezenti in populatia $i+1$ rezultati prin crossover este maxim $n_{t}$ unde $n_{t}$ este numarul de tournamente ce au avut loc in populatia $i$.
 \section{Mutatie}
 
-Folosind tournament selection, mutatiile au loc doar asupra castigatorilor. Fiecare castigator sufera o mutatie de un bit asupra cromozomului, iar cromozomul mutat ajunge in generatia urmatoare. Alte modalitati au fost posibila mutatie a oricarui cromozom din population si un procentaj de mutatie comparat cu o mutatie fixa de 1 bit.
+Folosind tournament selection, mutatiile au loc doar asupra castigatorilor. Fiecare castigator sufera o mutatie de un bit asupra cromozomului, iar cromozomul mutat ajunge in generatia urmatoare. Alte modalitati sunt: 
+
+\begin{itemize}
+    \item Posibila mutatie a oricarui cromozom din populatie fata doar de campioni.
+    \item Procentaj de mutatie fata de o mutatie fixa de 1 bit.
+\end{itemize}
+
+Ambele modalitati sunt viabile si au fost abordate in Rezultate.

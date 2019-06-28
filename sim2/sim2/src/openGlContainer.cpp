@@ -68,6 +68,7 @@ void openGlContainer::init()
 	MatrixID = glGetUniformLocation(ProgramID, "MVP");
 }
 
+// Shader Loader from http://www.opengl-tutorial.org/download/
 void openGlContainer::loadShaders(const char * vertex_path, const char * fragment_path)
 {
 	// Create the shaders

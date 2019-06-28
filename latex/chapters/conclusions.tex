@@ -1,4 +1,26 @@
 \chapter*{Concluzii} 
 \addcontentsline{toc}{chapter}{Concluzii}
 
-conclusions
+Algoritmul genetic este dependent de cantitatea de material genetic pe care o are in prima generatie. In cazul lucrarii, un numar mic de indivizi in generatia initiala poate fi daunator, blocand algoritmul intr-un optim local.
+O probablititate de mutatie mai mare poate evita optimurile locale dar scade sansele algoritmului genetic de a atinge optimul global contaminand populatia mai mult decat ar trebuii.
+
+Trecerea de la optim fix la optim dinamic nu s-a dovedit a fi dificila pentru algoritmul genetic. Acesta inca ajunge la optimul global la fel de repede.
+
+Lucrarea "Evolutie Fizica prin Algoritmi Genetici" aduce posibile directii de cercetare in continuare atat in partea algoritmului genetic, cat si a motorului fizic. Lucrarea surprinde comportamentul algoritmilor genetici intr-un mediu static cat si dinamic, folosind unelte dezvoltate de la 0, pentru a avea control complet asupra tuturor factorilor dintr-o simulare.
+
+\section{Future Work}
+
+Lucrarea poate fi continuata in doua moduri, cu motorul fizic sau cu algoritmul genetic:
+Algoritmul genetic poate fi continuat prin:
+\begin{itemize}
+    \item Implementarea unor cromozomi mai detaliati, mai puternici fara limitare la 63$N$.
+    \item Adaugarea unor moduri de selectie diferite care pot trata optimurile locale mai bine.
+    \item Gasirea unei metode de a evita optime locale.
+    \item Adaugarea unor rotatii in cromozom pentru a reactiona diferit la coliziuni.
+\end{itemize}
+
+Cat pentru motorul fizic, acesta poate fi imbunatatit din mai multe puncte de vedere:
+\begin{itemize}
+    \item Implementarea unor sisteme de control in motorul fizic si a rotatiei angulare. Asta ar permite coliziuni mai realiste si dezvoltarea unor indivizi mai avansati. Implementarea unor sisteme de control in motorul fizic ar conduce algoritmul genetic spre evoluarea locomotiei.
+    \item Schimbarea modului in care se face render in modul head pentru acelasi tip de obiect. Schimbarea pe instanced rendering ar permite vizualizarea de mii de indivizi per generatie fara pierdere de performanta.
+\end{itemize}
