@@ -3,6 +3,7 @@
 class Floor : public oglVertexObject
 {
 public:
+	bool mode;
 	Floor(const char* path,int id);
 	~Floor();
 public:

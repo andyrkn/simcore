@@ -27,5 +27,7 @@ private:
 
 	void visualizePopulation();
 	void visualizeIndividual(int index);
+
+	bool convergence();
 };
 

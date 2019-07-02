@@ -4,10 +4,10 @@
 
 Camera::Camera()
 {
-	position = glm::vec3(-35, 10, 45);
+	position = glm::vec3(-50, 20, 5);
 
 	ProjectionMatrix = glm::perspective((float)glm::radians(360.0), 16.0f / 9.0f, 0.1f, 100.0f);
-	ViewMatrix = glm::lookAt(position, position, glm::vec3(0, 0, 0));
+	ViewMatrix = glm::lookAt(position, position, glm::vec3(0, 1, 0));
 }
 
 
@@ -19,25 +19,29 @@ void Camera::setContainer(openGlContainer * container)
 	this->container = container;
 }
 
+//camera modified from http://www.opengl-tutorial.org/download/
 void Camera::update()
 {
+	int width = 1080;
+	int height = 1920;
+
 	static double lastTime = glfwGetTime();
 	double currentTime = glfwGetTime();
 	float deltaTime = float(currentTime - lastTime);
 
 	double xpos, ypos;
 	glfwGetCursorPos(container->window, &xpos, &ypos);
-	glfwSetCursorPos(container->window, 1280 / 2, 720 / 2);
+	glfwSetCursorPos(container->window, height / 2, width / 2);
 
-	horizontalAngle += mouseSpeed * float(1280 / 2 - xpos);
-	verticalAngle += mouseSpeed * float(720 / 2 - ypos);
+	horizontalAngle += mouseSpeed * float(height / 2 - xpos);
+	verticalAngle += mouseSpeed * float(width / 2 - ypos);
 
 	glm::vec3 direction(
 		cos(verticalAngle) * sin(horizontalAngle),
 		sin(verticalAngle),
 		cos(verticalAngle) * cos(horizontalAngle)
 	);
-
+	
 	glm::vec3 right = glm::vec3(
 		sin(horizontalAngle - 3.14f / 2.0f),
 		0,

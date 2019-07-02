@@ -4,6 +4,7 @@
 Floor::Floor(const char* path,int id) : oglVertexObject(path, id)
 {
 	state.inertiaTensor = 9999999.0f * glm::mat3(1.0f);
+	mode = false;
 }
 
 Floor::~Floor()
@@ -34,9 +35,30 @@ void Floor::update()
 	}
 	if (!rotated)
 		state.checkOffCenterRotation();
-
+	/*
 	if (id == -1)
 	{
-		state.position.y += 0.2;
+		float sign;
+		if (!mode)
+		{
+			sign = -1.0f;
+			if (state.position.y < 5.0f)
+			{
+				sign = 1.0f; mode = true;
+			}
+		}
+		if (mode)
+		{
+			sign = 1.0f;
+			if (state.position.y > 15.0f)
+			{
+				sign = -1.0f; mode = false;
+			}
+		}
+			
+		state.position.y += sign * (float)(15 * DT);
+		// state.position.y += 0.1;
 	}
+	
+	*/
 }

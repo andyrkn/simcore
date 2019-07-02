@@ -63,8 +63,8 @@ glm::vec4 Cromozome::toVec4()
 	glm::vec4 res;
 	res.x = xGenes.to_ulong();
 	res.y = yGenes.to_ulong();
-	res.z = zGenes.to_ulong() - 63 / 2;
-	res.w = eGenes.to_ulong();
+	res.z = (float)(zGenes.to_ulong() * 2) - 63;
+	res.w = eGenes.to_ulong() + 1;
 	return res;
 }
 

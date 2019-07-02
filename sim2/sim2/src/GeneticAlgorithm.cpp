@@ -48,6 +48,13 @@ void GeneticAlgorithm::visualizeIndividual(int index)
 	core2.singleCromozomTest(cromozome);
 }
 
+bool GeneticAlgorithm::convergence()
+{
+	if (fitness[0].second > 5.0f) return false;
+	if ((float)fitness[10].second - (float)fitness[0].second < 4.0) return true;
+	return false;
+}
+
 void GeneticAlgorithm::initPopulation()
 {
 	std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
@@ -72,7 +79,7 @@ void GeneticAlgorithm::mutation(int amount, float probability)
 	std::uniform_int_distribution<int> probability_distribution(1, 1000);
 	std::uniform_int_distribution<int> mutation_distribution(0, 2100);
 
-	for (auto it = std::begin(population); it != std::end(population); it++)
+	for (auto it = std::begin(population) + 1; it != std::end(population); it++)
 	{
 		float chanceToMutate = (float) probability_distribution(generator) / 1000;
 		if (chanceToMutate < probability)
@@ -245,7 +252,7 @@ void GeneticAlgorithm::start()
 	initPopulation();
 	computeFitness();
 	bool tournamentMutation = false;
-	int iterations = 200;
+	int iterations = 2000;
 	int mutationPercent = 10;
 	float mutationProbability = 0.1;
 
@@ -263,6 +270,8 @@ void GeneticAlgorithm::start()
 		tournamentSelection(tournamentMutation); // true = champions mutate, false they dont
 		if(!tournamentMutation) mutation(mutationPercent, mutationProbability);
 		computeFitness();
+
+
 		std::cout << "Generation " << i << " best  time: " <<
 			fitness[0].second << " ||| " <<
 			population[fitness[0].first].toVec4().x << " " <<
@@ -275,8 +284,10 @@ void GeneticAlgorithm::start()
 			population[fitness[0].first].toVec4().z << " " <<
 			population[fitness[0].first].toVec4().w << "\n";
 
-		if (fitness[0].second < 10)break;
+		if (convergence()) break;
+		// if (fitness[0].second < 5.0f) break;
 	}
+	getchar();
 	printPop();
 	fout.close();
 	visualizePopulation();

@@ -11,7 +11,7 @@ public:
 	GLuint MatrixID;
 	GLuint VertexArrayID;
 public:
-	openGlContainer(int _w = 1280, int _h = 720);
+	openGlContainer(int _w = 1920, int _h = 1080);
 	~openGlContainer();
 	void init();
 private:

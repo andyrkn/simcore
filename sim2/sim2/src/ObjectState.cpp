@@ -92,6 +92,8 @@ bool ObjectState::collide(ObjectState& state2, std::vector<glm::vec3> v1, std::v
 				{
 					glm::vec3 n = glm::triangleNormal(v2[j], v2[j + 1], v2[j + 2]);
 
+					position -= (velocity * (0.016f * 2.0f));
+
 					velocity *= elasticity;
 					for (int k = 0; k < 3; k++) if (n[k] != 0) velocity[k] = -velocity[k];
 

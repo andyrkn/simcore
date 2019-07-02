@@ -5,6 +5,9 @@ class Camera
 {
 public:
 
+	int width;
+	int height;
+
 	glm::vec3 position;
 
 	glm::mat4 ProjectionMatrix;

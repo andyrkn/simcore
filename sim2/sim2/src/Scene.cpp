@@ -41,7 +41,7 @@ void Scene::updateObjects()
 				{
 					if (obj->state.collide(obj2->state, obj->vertices, obj2->vertices))
 					{
-						obj->state.position += obj->state.velocity * (DT*2);
+						// obj->state.position += obj->state.velocity * (DT*5);
 
 						if (env.running) //  check if there's an active genetic environment
 						{
@@ -146,7 +146,7 @@ float Scene::computeFitness(int i, bool hit)
 
 void Scene::applyAG()
 {
-	if (vertexObjects[0]->deltaTime < 0.50f)
+	if (vertexObjects[0]->deltaTime < 1.00f && vertexObjects[0]->deltaTime > 0.50f)
 	{
 		for (int i = 0; i < env.popsize; i++)
 		{
@@ -174,9 +174,13 @@ void Scene::initObjectsOpenGL()
  
 void Scene::loadObstacles()
 {
-	// floor.push_back(Floor("objs/vertexObjects/top obstacle.txt", -4));
-	floor.push_back(Floor("objs/vertexObjects/obstacle2.txt", -1));
-	floor.push_back(Floor("objs/vertexObjects/target.txt", -2));
+	// floor.push_back(Floor("objs/vertexObjects/top_obstacle_short.txt", -4));
+	// floor.push_back(Floor("objs/vertexObjects/obstacle1.txt", -5));
+	// floor.push_back(Floor("objs/vertexObjects/obstacle2.txt", -2));
+	floor.push_back(Floor("objs/vertexObjects/side_obs_short.txt", -6));
+	floor.push_back(Floor("objs/vertexObjects/side_obs_short_2.txt", -7));
+	// floor.push_back(Floor("objs/vertexObjects/vertical_wall.txt", -8));
+	floor.push_back(Floor("objs/vertexObjects/target_2.txt", -1));
 	floor.push_back(Floor("objs/vertexObjects/floor.txt", -3));
 
 	for (auto& immovable : floor)
